@@ -1,0 +1,22 @@
+// Place Preferences
+{
+    "files.autoSave": "onFocusChange",
+    "editor.wordWrap": "on",
+    "search.location": "sidebar",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "atomKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "editor.scrollBeyondLastLine": false,
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false,
+    "workbench.editor.showIcons": true,
+    "editor.formatOnSave": true,
+    "explorer.openEditors.visible": 0,
+    "window.menuBarVisibility": "toggle",
+    "window.newWindowDimensions": "maximized",
+    "window.restoreFullscreen": true,
+    "zenMode.centerLayout": false,
+}
