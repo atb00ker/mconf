@@ -7,8 +7,8 @@ sleep-inactive-battery-timeout=1800
 
 [settings-daemon/plugins/color]
 night-light-schedule-automatic=false
-night-light-schedule-to=23.0
-night-light-schedule-from=0.0
+night-light-schedule-to=3.0
+night-light-schedule-from=5.0
 night-light-enabled=true
 
 [settings-daemon/plugins/xsettings]
@@ -38,7 +38,7 @@ dash-max-icon-size=36
 show-tabs-mode='auto'
 
 [gedit/plugins/filebrowser]
-virtual-root='file:///home/atb00ker/.config/nautilus'
+virtual-root='file:///home/atb00ker/Documents/develop/'
 tree-view=true
 root='file:///'
 
@@ -207,7 +207,7 @@ sources=[('xkb', 'us')]
 xkb-options=@as []
 
 [control-center]
-last-panel='background'
+last-panel='display'
 
 [eog/view]
 background-color='rgb(0,0,0)'

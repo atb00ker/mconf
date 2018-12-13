@@ -42,8 +42,8 @@ gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
 gnome-shell --replace &
 ## Remove Dock
 sudo apt remove gnome-shell-extension-ubuntu-dock
-## Restore Gnome (backup: dconf dump /org/gnome/ > backup.txt)
-dconf load /org/gnome/ < backup.txt
+## Restore Gnome (backup: dconf dump /org/gnome/ > gnome.txt)
+dconf load /org/gnome/ < gnome.txt
 ## Some user settings Restore
 cp ~/.config/dconf/user
 sudo dconf update
