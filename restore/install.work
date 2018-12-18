@@ -28,9 +28,14 @@ cp ~/.config/Code/User/keybindings.json
 cp ~/.config/Code/User/settings.json
 
 
-# Install chromium
-sudo apt install chromium-browser
+# Install chromium -- if applicable
+# sudo apt install chromium-browser
 
+# Install chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt-get update 
+sudo apt-get install google-chrome-stable
 
 # Gnome Setup
 ## Gnome Hide-top-bar
@@ -73,13 +78,17 @@ alias xpwd='pwd | xclip -sel clip'
 alias ctime='date +"%I:%M %P"'
 alias gui='xdg-open . &> /dev/null &'
 alias sgui='sudo bash -c "xdg-open . &> /dev/null &"'
-alias gopen='gio open'
-alias ccode='code /home/atb00ker/Documents/clipboard'
-alias chrome='chromium-browser &> /dev/null &'
+alias chrome='google-chrome &> /dev/null &'
 alias fcode='code -n .'
+alias ccode='code /home/atb00ker/Documents/clipboard'
+alias gopen='gio open'
+## frequent commands
+alias modconf='code ~/.bashrc && code ~/Documents/develop/mconf/restore/install.work'
 ## directories
 alias develop='cd /home/atb00ker/Documents/develop/'
+### openwisp
 alias openwisp='cd /home/atb00ker/Documents/develop/openwisp/'
+alias dipam='cd /home/atb00ker/Documents/develop/openwisp/django-ipam'
 
 # Change boot logo
 /usr/share/plymouth/themes/ --> Change logo & add desire image

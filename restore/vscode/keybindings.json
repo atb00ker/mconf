@@ -21,7 +21,12 @@
         "command": "workbench.files.action.collapseExplorerFolders"
     },
     {
-        "key": "shift+f",
+        "key": "meta+f",
         "command": "workbench.action.toggleFullScreen"
+    },
+    {
+        "key": "shift+enter",
+        "command": "editor.action.insertLineAfter",
+        "when": "editorTextFocus"
     }
 ]

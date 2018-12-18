@@ -7,7 +7,9 @@ Backup:
 - downloads
 - pictures
 - Wifi(s)
+- /var/lib/bluetooth
 
 
 Script:
 - Git upload all
+- Easily encrypt data files
