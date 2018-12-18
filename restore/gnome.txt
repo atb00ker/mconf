@@ -28,17 +28,27 @@ enabled-extensions=['hidetopbar@mathieu.bidon.ca']
 disable-user-extensions=false
 favorite-apps=@as []
 enable-hot-corners=false
+had-bluetooth-devices-setup=false
 
 [shell/extensions/dash-to-dock]
 dock-fixed=false
 dock-position='LEFT'
 dash-max-icon-size=36
 
+[shell/extensions/hidetopbar]
+shortcut-delay=0.0
+animation-time-autohide=0.0
+enable-active-window=false
+pressure-threshold=10000
+animation-time-overview=0.0
+pressure-timeout=10000
+enable-intellihide=false
+
 [gedit/preferences/ui]
 show-tabs-mode='auto'
 
 [gedit/plugins/filebrowser]
-virtual-root='file:///home/atb00ker/Documents/develop/'
+virtual-root='file:///home/atb00ker/'
 tree-view=true
 root='file:///'
 
@@ -47,7 +57,7 @@ active-plugins=['spell', 'filebrowser', 'time', 'docinfo', 'modelines']
 
 [gedit/state/window]
 size=(900, 694)
-state=87168
+state=43908
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
@@ -76,10 +86,17 @@ sort-type='ascending'
 list-mode='as-folder'
 show-path=false
 
+[file-roller/dialogs/extract]
+skip-newer=false
+recreate-folders=true
+
 [file-roller/ui]
 sidebar-width=200
 window-height=480
 window-width=600
+
+[evince/default]
+window-ratio=(0.84592719323258236, 0.98078731694209331)
 
 [evolution-data-server]
 network-monitor-gio-name=''
@@ -97,18 +114,24 @@ gtk-theme='Adwaita-dark'
 clock-show-date=true
 
 [desktop/notifications]
-application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser']
+application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps']
 show-banners=true
 show-in-lock-screen=true
 
 [desktop/notifications/application/org-gnome-tweaks]
 application-id='org.gnome.tweaks.desktop'
 
+[desktop/notifications/application/wps-office-wps]
+application-id='wps-office-wps.desktop'
+
 [desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
 
 [desktop/notifications/application/firefox]
 application-id='firefox.desktop'
+
+[desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
 [desktop/notifications/application/gnome-control-center]
 application-id='gnome-control-center.desktop'
@@ -120,6 +143,9 @@ application-id='update-manager.desktop'
 enable=true
 show-banners=true
 force-expanded=true
+
+[desktop/notifications/application/evince]
+application-id='evince.desktop'
 
 [desktop/notifications/application/code-url-handler]
 application-id='code-url-handler.desktop'
@@ -140,11 +166,11 @@ enable=false
 [desktop/notifications/application/apport-gtk]
 application-id='apport-gtk.desktop'
 
-[desktop/notifications/application/org-gnome-fileroller]
-enable=false
-
 [desktop/notifications/application/nm-applet]
 force-expanded=true
+
+[desktop/notifications/application/org-gnome-fileroller]
+enable=false
 
 [desktop/app-folders]
 folder-children=['Utilities', 'Sundry', 'YaST']
@@ -175,6 +201,7 @@ secondary-color='#000000000000'
 
 [desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+disabled=@as []
 
 [desktop/calendar]
 show-weekdate=true
@@ -194,6 +221,10 @@ resize-with-right-button=false
 action-double-click-titlebar='menu'
 action-middle-click-titlebar='none'
 
+[desktop/sound]
+theme-name='freedesktop'
+event-sounds=true
+
 [desktop/background]
 picture-uri='file:///home/atb00ker/Pictures/desktop-wallpaper.jpg'
 show-desktop-icons=false
@@ -207,7 +238,7 @@ sources=[('xkb', 'us')]
 xkb-options=@as []
 
 [control-center]
-last-panel='display'
+last-panel='search'
 
 [eog/view]
 background-color='rgb(0,0,0)'
@@ -252,7 +283,7 @@ highlight-foreground-color='rgb(219,0,0)'
 audible-bell=false
 
 [software]
-check-timestamp=int64 1544684445
+check-timestamp=int64 1545119584
 
 [mutter]
 dynamic-workspaces=false
