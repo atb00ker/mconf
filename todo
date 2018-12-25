@@ -1,0 +1,5 @@
+Removing script dependancies
+- Divide functions
+- pass path variables
+- get rid of relative paths
+- save and restore permissions -> ACL | https://stackoverflow.com/questions/3450250/is-it-possible-to-create-a-script-to-save-and-restore-permissions

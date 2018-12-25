@@ -48,7 +48,6 @@ enable-intellihide=false
 show-tabs-mode='auto'
 
 [gedit/plugins/filebrowser]
-virtual-root='file:///home/atb00ker/'
 tree-view=true
 root='file:///'
 
@@ -67,7 +66,6 @@ include-pointer=false
 include-border=true
 border-effect='none'
 delay=0
-last-save-directory='file:///home/atb00ker/Pictures'
 
 [nautilus/preferences]
 search-view='list-view'
@@ -78,6 +76,9 @@ search-filter-time-type='last_modified'
 sidebar-width=196
 geometry='890x539+133+93'
 maximized=true
+
+[nautilus/icon-view]
+default-zoom-level='standard'
 
 [file-roller/listing]
 sort-method='name'
@@ -96,7 +97,7 @@ window-height=480
 window-width=600
 
 [evince/default]
-window-ratio=(0.84592719323258236, 0.98078731694209331)
+window-ratio=(1.1258169934640523, 0.85606060606060608)
 
 [evolution-data-server]
 network-monitor-gio-name=''
@@ -114,7 +115,7 @@ gtk-theme='Adwaita-dark'
 clock-show-date=true
 
 [desktop/notifications]
-application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps']
+application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps', 'gnome-network-panel', 'code', 'org-gnome-terminal']
 show-banners=true
 show-in-lock-screen=true
 
@@ -147,8 +148,8 @@ force-expanded=true
 [desktop/notifications/application/evince]
 application-id='evince.desktop'
 
-[desktop/notifications/application/code-url-handler]
-application-id='code-url-handler.desktop'
+[desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
 
 [desktop/notifications/application/chromium-browser]
 application-id='chromium-browser.desktop'
@@ -156,8 +157,14 @@ application-id='chromium-browser.desktop'
 [desktop/notifications/application/org-gnome-gedit]
 application-id='org.gnome.gedit.desktop'
 
+[desktop/notifications/application/code-url-handler]
+application-id='code-url-handler.desktop'
+
 [desktop/notifications/application/org-gnome-software-editor]
 enable=false
+
+[desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
 
 [desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
@@ -168,6 +175,9 @@ application-id='apport-gtk.desktop'
 
 [desktop/notifications/application/nm-applet]
 force-expanded=true
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
 
 [desktop/notifications/application/org-gnome-fileroller]
 enable=false
@@ -238,7 +248,7 @@ sources=[('xkb', 'us')]
 xkb-options=@as []
 
 [control-center]
-last-panel='search'
+last-panel='wifi'
 
 [eog/view]
 background-color='rgb(0,0,0)'
@@ -267,7 +277,7 @@ default-size-columns=511
 default-size-rows=511
 cursor-shape='block'
 cursor-colors-set=false
-highlight-colors-set=true
+highlight-colors-set=false
 scroll-on-output=true
 exit-action='close'
 use-theme-colors=false
@@ -282,10 +292,26 @@ background-transparency-percent=5
 highlight-foreground-color='rgb(219,0,0)'
 audible-bell=false
 
-[software]
-check-timestamp=int64 1545119584
+[nm-applet/eap/6279bfa8-39b5-4761-8bc0-abf9f21549c2]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=true
+
+[nm-applet/eap/c787e5e5-2723-31a8-b14b-e8ecb34cb865]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[nm-applet/eap/fab9bd71-050b-4a1d-921e-5088ead02f34]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[nm-applet/eap/fdc58112-40cf-40f0-87b5-135076dc03bd]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
 
 [mutter]
 dynamic-workspaces=false
 workspaces-only-on-primary=true
 attach-modal-dialogs=false
+
+[software]
+check-timestamp=int64 1545720258
