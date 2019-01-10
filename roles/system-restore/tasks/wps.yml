@@ -1,0 +1,15 @@
+---
+
+- name: Install a .deb package for kingsoft WPS office
+  apt:
+    deb: "{{ wps_link }}"
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: Install a .deb package for WPS fonts
+  apt:
+    deb: "{{ wps_font_link }}"
+  notify:
+    - apt autoremove
+    - apt autoclean

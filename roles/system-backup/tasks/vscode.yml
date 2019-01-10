@@ -1,0 +1,42 @@
+---
+
+- name: Ensure backup directory exists
+  file: 
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/" 
+    state: directory
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Copy settings.json to `.cache/`
+  copy:
+    src: "/home/{{ username }}/.config/Code/User/settings.json"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/.cache/settings.json"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  register: settings
+
+- name: Copy settings.json
+  copy:
+    src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/.cache/settings.json"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/settings.json"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  when: settings.changed
+
+- name: Remove useless lines from settings.json
+  lineinfile:
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/settings.json"
+    state: absent
+    regexp: 'python.pythonPath'
+  when: settings.changed
+
+- name: Copy keybindings.json
+  copy:
+    src: "/home/{{ username }}/.config/Code/User/keybindings.json"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/keybindings.json"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

@@ -1,6 +1,6 @@
 // Place Preferences
 {
-    "files.autoSave": "onFocusChange",
+    "files.autoSave": "afterDelay",
     "editor.wordWrap": "on",
     "search.location": "sidebar",
     "workbench.colorTheme": "Monokai Dimmed",
@@ -19,4 +19,5 @@
     "window.newWindowDimensions": "maximized",
     "window.restoreFullscreen": true,
     "zenMode.centerLayout": false,
+    "workbench.startupEditor": "newUntitledFile",
 }

@@ -1,0 +1,32 @@
+---
+
+- name: Install vscode
+  include_role:
+    name: gantsign.visual-studio-code
+    tasks_from: install
+
+- name: Install extensions
+  include_role:
+    name: gantsign.visual-studio-code
+    tasks_from: install-extensions
+  vars:
+    users:
+      - username: "{{ username }}"
+        visual_studio_code_extensions: 
+          - ms-vscode.atom-keybindings
+
+- name: Copy settings.json
+  copy:
+    src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/settings.json"
+    dest: "/home/{{ username }}/.config/Code/User/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy keybindings.json
+  copy:
+    src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/keybindings.json"
+    dest: "/home/{{ username }}/.config/Code/User/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644

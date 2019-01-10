@@ -1,0 +1,34 @@
+---
+
+  - name: Create hidetopbar@mathieu.bidon.ca folder
+    file:
+      state: directory
+      path: "/home/{{ username }}/.local/share/gnome-shell/extensions/"
+      mode: 0755
+      owner: "{{ username }}"
+      group: "{{ username }}"
+
+  - name: Clone hidetopbar@mathieu.bidon.ca
+    git:
+      repo: https://github.com/mlutfy/hidetopbar.git
+      dest: "/home/{{ username }}/.local/share/gnome-shell/extensions/hidetopbar@mathieu.bidon.ca"
+    
+  - name: Make schemas
+    make:
+      chdir: "/home/{{ username }}/.local/share/gnome-shell/extensions/hidetopbar@mathieu.bidon.ca"
+      target: schemas
+
+  - name: Install gnome-tweak-tool
+    apt:
+      name: gnome-tweak-tool
+    notify:
+     - apt autoremove
+     - apt autoclean
+
+  - name: Remove gnome-shell-extension-ubuntu-dock package
+    apt:
+      name: gnome-shell-extension-ubuntu-dock
+      state: absent
+    notify:
+     - apt autoremove
+     - apt autoclean

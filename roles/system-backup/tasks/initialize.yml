@@ -1,0 +1,22 @@
+---
+
+- name: Clean previous backup
+  file:
+    state: absent
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/"
+
+- name: Create backup folder
+  file:
+    state: directory
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/"
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Create cache folder
+  file: 
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/.cache/" 
+    state: directory
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"

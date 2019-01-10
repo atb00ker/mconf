@@ -30,12 +30,12 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+k",
-        "command": "editor.action.deleteLines",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "ctrl+shift+r",
         "command": "workbench.action.files.saveWithoutFormatting"
-    }
+    },
+    {
+        "key": "ctrl+k",
+        "command": "editor.action.clipboardCutAction",
+        "when": "textInputFocus && !editorReadonly"
+    },
 ]

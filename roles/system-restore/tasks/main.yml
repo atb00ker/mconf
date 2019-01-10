@@ -1,0 +1,55 @@
+---
+
+- import_tasks: vscode.yml
+  become_user: "{{ username }}"
+  tags: [vscode]
+
+- import_tasks: common-apt.yml
+  become_user: "{{ username }}"
+  tags: [common]
+
+- import_tasks: gnome.yml
+  become_user: "{{ username }}"
+  tags: [gnome]
+
+- name: Load dconf
+  shell: "dconf.sh /home/{{ username }}/{{ mconf }}/{{ backup_location }}/dconf.txt"
+  tags: [dconf]
+
+- import_tasks: wps.yml
+  become_user: "{{ username }}"
+  tags: [wps-office]
+
+- import_tasks: python.yml
+  become_user: "{{ username }}"
+  tags: [python]
+
+- name: Create Development Folder
+  become_user: "{{ username }}"
+  file:
+    state: directory
+    path: "/home/{{ username }}/Documents/develop"
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Restore `autostart/`
+  become_user: "{{ username }}"
+  copy:
+    src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/autostart/"
+    dest: "/home/{{ username }}/.config/autostart/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  tags: [autostart]
+
+- name: End note
+  vars:
+    msg: |
+         Remember to check :-
+          1.Tweak tool settings
+          2.GUI settings
+          3.Chrome > settings > Appearance > 'Use system title bar and borders
+         Complete!
+  debug:
+    msg: "{{ msg.split('\n') }}"

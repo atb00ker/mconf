@@ -1,0 +1,38 @@
+---
+
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+      cache_valid_time: 86400
+
+  - name: Perform apt full-update
+    apt:
+      upgrade: full
+    notify:
+     - apt autoremove
+     - apt autoclean
+
+  - name: Install all common packages
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - curl 
+      - apt-transport-https 
+      - xclip 
+      - git 
+      - make
+      - dconf-tools
+      - undistract-me
+    notify:
+     - apt autoremove
+     - apt autoclean
+
+- name: Git global configuration
+  git_config:
+    name: "{{ item.email }}"
+    scope: global
+    value: "{{ item.email }}" 
+  with_items:
+    -  { name: user.email, value: "{{ git_email }}" }
+    -  { name: user.name, value: "{{ git_name }}" }

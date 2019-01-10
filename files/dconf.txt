@@ -1,28 +1,34 @@
-[settings-daemon/plugins/power]
+[com/ubuntu/update-notifier]
+release-check-time=uint32 1546760618
+
+[com/ubuntu/sound]
+allow-amplified-volume=false
+
+[org/gnome/settings-daemon/plugins/power]
 power-button-action='suspend'
 idle-dim=false
 sleep-inactive-ac-timeout=7200
 sleep-inactive-ac-type='suspend'
 sleep-inactive-battery-timeout=1800
 
-[settings-daemon/plugins/color]
+[org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 night-light-schedule-to=3.0
 night-light-schedule-from=5.0
 night-light-enabled=true
 
-[settings-daemon/plugins/xsettings]
+[org/gnome/settings-daemon/plugins/xsettings]
 overrides={'Gtk/ShellShowsAppMenu': <1>}
 antialiasing='rgba'
 hinting='full'
 
-[settings-daemon/peripherals/keyboard]
+[org/gnome/settings-daemon/peripherals/keyboard]
 numlock-state='on'
 
-[settings-daemon/peripherals/mouse]
+[org/gnome/settings-daemon/peripherals/mouse]
 locate-pointer=false
 
-[shell]
+[org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['hidetopbar@mathieu.bidon.ca']
 disable-user-extensions=false
@@ -30,12 +36,12 @@ favorite-apps=@as []
 enable-hot-corners=false
 had-bluetooth-devices-setup=false
 
-[shell/extensions/dash-to-dock]
+[org/gnome/shell/extensions/dash-to-dock]
 dock-fixed=false
 dock-position='LEFT'
 dash-max-icon-size=36
 
-[shell/extensions/hidetopbar]
+[org/gnome/shell/extensions/hidetopbar]
 shortcut-delay=0.0
 animation-time-autohide=0.0
 enable-active-window=false
@@ -44,66 +50,66 @@ animation-time-overview=0.0
 pressure-timeout=10000
 enable-intellihide=false
 
-[gedit/preferences/ui]
+[org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
 
-[gedit/plugins/filebrowser]
+[org/gnome/gedit/plugins/filebrowser]
 tree-view=true
 root='file:///'
 
-[gedit/plugins]
+[org/gnome/gedit/plugins]
 active-plugins=['spell', 'filebrowser', 'time', 'docinfo', 'modelines']
 
-[gedit/state/window]
+[org/gnome/gedit/state/window]
 size=(900, 694)
-state=43908
+state=87168
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
 
-[gnome-screenshot]
+[org/gnome/gnome-screenshot]
 include-pointer=false
 include-border=true
 border-effect='none'
 delay=0
 
-[nautilus/preferences]
+[org/gnome/nautilus/preferences]
 search-view='list-view'
 default-folder-viewer='icon-view'
 search-filter-time-type='last_modified'
 
-[nautilus/window-state]
+[org/gnome/nautilus/window-state]
 sidebar-width=196
-geometry='890x539+133+93'
-maximized=true
+geometry='890x539+50+50'
+maximized=false
 
-[nautilus/icon-view]
+[org/gnome/nautilus/icon-view]
 default-zoom-level='standard'
 
-[file-roller/listing]
+[org/gnome/file-roller/listing]
 sort-method='name'
 name-column-width=250
 sort-type='ascending'
 list-mode='as-folder'
 show-path=false
 
-[file-roller/dialogs/extract]
+[org/gnome/file-roller/dialogs/extract]
 skip-newer=false
 recreate-folders=true
 
-[file-roller/ui]
+[org/gnome/file-roller/ui]
 sidebar-width=200
 window-height=480
 window-width=600
 
-[evince/default]
-window-ratio=(1.1258169934640523, 0.85606060606060608)
+[org/gnome/evince/default]
+window-ratio=(2.2320261437908497, 0.85606060606060608)
 
-[evolution-data-server]
+[org/gnome/evolution-data-server]
 network-monitor-gio-name=''
 migrated=true
 
-[desktop/interface]
+[org/gnome/desktop/interface]
 text-scaling-factor=1.0
 gtk-im-module='gtk-im-context-simple'
 show-battery-percentage=true
@@ -114,30 +120,42 @@ enable-animations=false
 gtk-theme='Adwaita-dark'
 clock-show-date=true
 
-[desktop/notifications]
-application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps', 'gnome-network-panel', 'code', 'org-gnome-terminal']
+[org/gnome/desktop/notifications]
+application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps', 'gnome-network-panel', 'code', 'org-gnome-terminal', 'virtualbox', 'ca-desrt-dconf-editor', 'megasync', 'keybase']
 show-banners=true
 show-in-lock-screen=true
 
-[desktop/notifications/application/org-gnome-tweaks]
+[org/gnome/desktop/notifications/application/org-gnome-tweaks]
 application-id='org.gnome.tweaks.desktop'
 
-[desktop/notifications/application/wps-office-wps]
-application-id='wps-office-wps.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-fileroller]
+enable=false
 
-[desktop/notifications/application/org-gnome-nautilus]
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
 
-[desktop/notifications/application/firefox]
+[org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
 
-[desktop/notifications/application/google-chrome]
+[org/gnome/desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
 
-[desktop/notifications/application/gnome-control-center]
+[org/gnome/desktop/notifications/application/wps-office-wps]
+application-id='wps-office-wps.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-control-center]
 application-id='gnome-control-center.desktop'
 
-[desktop/notifications/application/update-manager]
+[org/gnome/desktop/notifications/application/megasync]
+application-id='megasync.desktop'
+
+[org/gnome/desktop/notifications/application/virtualbox]
+application-id='virtualbox.desktop'
+
+[org/gnome/desktop/notifications/application/evince]
+application-id='evince.desktop'
+
+[org/gnome/desktop/notifications/application/update-manager]
 enable-sound-alerts=false
 show-in-lock-screen=true
 application-id='update-manager.desktop'
@@ -145,85 +163,85 @@ enable=true
 show-banners=true
 force-expanded=true
 
-[desktop/notifications/application/evince]
-application-id='evince.desktop'
-
-[desktop/notifications/application/gnome-network-panel]
-application-id='gnome-network-panel.desktop'
-
-[desktop/notifications/application/chromium-browser]
-application-id='chromium-browser.desktop'
-
-[desktop/notifications/application/org-gnome-gedit]
-application-id='org.gnome.gedit.desktop'
-
-[desktop/notifications/application/code-url-handler]
+[org/gnome/desktop/notifications/application/code-url-handler]
 application-id='code-url-handler.desktop'
 
-[desktop/notifications/application/org-gnome-software-editor]
+[org/gnome/desktop/notifications/application/chromium-browser]
+application-id='chromium-browser.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-gedit]
+application-id='org.gnome.gedit.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software-editor]
 enable=false
 
-[desktop/notifications/application/org-gnome-terminal]
+[org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
+application-id='ca.desrt.dconf-editor.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
-[desktop/notifications/application/org-gnome-software]
+[org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 enable=false
 
-[desktop/notifications/application/apport-gtk]
+[org/gnome/desktop/notifications/application/apport-gtk]
 application-id='apport-gtk.desktop'
 
-[desktop/notifications/application/nm-applet]
+[org/gnome/desktop/notifications/application/nm-applet]
 force-expanded=true
 
-[desktop/notifications/application/code]
+[org/gnome/desktop/notifications/application/code]
 application-id='code.desktop'
 
-[desktop/notifications/application/org-gnome-fileroller]
-enable=false
+[org/gnome/desktop/notifications/application/keybase]
+application-id='keybase.desktop'
 
-[desktop/app-folders]
+[org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry', 'YaST']
 
-[desktop/app-folders/folders/Utilities]
+[org/gnome/desktop/app-folders/folders/Utilities]
 translate=true
 categories=['X-GNOME-Utilities']
 apps=['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
 name='X-GNOME-Utilities.directory'
 
-[desktop/app-folders/folders/Sundry]
+[org/gnome/desktop/app-folders/folders/Sundry]
 translate=true
 categories=['X-GNOME-Sundry']
 apps=['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.7.0-openjdk-jconsole.desktop', 'java-1.7.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']
 name='X-GNOME-Sundry.directory'
 
-[desktop/app-folders/folders/YaST]
+[org/gnome/desktop/app-folders/folders/YaST]
 translate=true
 categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 
-[desktop/screensaver]
+[org/gnome/desktop/screensaver]
 picture-uri='file:///home/atb00ker/Pictures/lockscreen-wallpaper.jpg'
 color-shading-type='solid'
 primary-color='#000000000000'
 picture-options='zoom'
 secondary-color='#000000000000'
 
-[desktop/search-providers]
+[org/gnome/desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
 disabled=@as []
 
-[desktop/calendar]
+[org/gnome/desktop/calendar]
 show-weekdate=true
 
-[desktop/session]
+[org/gnome/desktop/session]
 idle-delay=uint32 900
 
-[desktop/privacy]
+[org/gnome/desktop/privacy]
 recent-files-max-age=30
 remove-old-temp-files=true
 
-[desktop/wm/preferences]
+[org/gnome/desktop/wm/preferences]
 num-workspaces=3
 action-right-click-titlebar='toggle-shade'
 button-layout=':appmenu,minimize,maximize,close'
@@ -231,11 +249,11 @@ resize-with-right-button=false
 action-double-click-titlebar='menu'
 action-middle-click-titlebar='none'
 
-[desktop/sound]
+[org/gnome/desktop/sound]
 theme-name='freedesktop'
 event-sounds=true
 
-[desktop/background]
+[org/gnome/desktop/background]
 picture-uri='file:///home/atb00ker/Pictures/desktop-wallpaper.jpg'
 show-desktop-icons=false
 color-shading-type='solid'
@@ -243,29 +261,29 @@ primary-color='#000000000000'
 picture-options='zoom'
 secondary-color='#000000000000'
 
-[desktop/input-sources]
+[org/gnome/desktop/input-sources]
 sources=[('xkb', 'us')]
 xkb-options=@as []
 
-[control-center]
+[org/gnome/control-center]
 last-panel='wifi'
 
-[eog/view]
+[org/gnome/eog/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
 
-[terminal/legacy]
+[org/gnome/terminal/legacy]
 mnemonics-enabled=false
 menu-accelerator-enabled=false
 schema-version=uint32 3
 default-show-menubar=false
 theme-variant='dark'
 
-[terminal/legacy/keybindings]
+[org/gnome/terminal/legacy/keybindings]
 full-screen='<Primary><Shift>f'
 find='<Primary><Shift>s'
 
-[terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 foreground-color='rgb(0,255,0)'
 scrollback-lines=15000
 scrollbar-policy='never'
@@ -292,26 +310,65 @@ background-transparency-percent=5
 highlight-foreground-color='rgb(219,0,0)'
 audible-bell=false
 
-[nm-applet/eap/6279bfa8-39b5-4761-8bc0-abf9f21549c2]
+[org/gnome/nm-applet/eap/b51b9d6b-800a-4784-b967-8378d29997ff]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=true
 
-[nm-applet/eap/c787e5e5-2723-31a8-b14b-e8ecb34cb865]
+[org/gnome/nm-applet/eap/6279bfa8-39b5-4761-8bc0-abf9f21549c2]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=true
+
+[org/gnome/nm-applet/eap/c787e5e5-2723-31a8-b14b-e8ecb34cb865]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
-[nm-applet/eap/fab9bd71-050b-4a1d-921e-5088ead02f34]
+[org/gnome/nm-applet/eap/87b4366e-5b21-45dc-a938-8207aa1f9272]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
-[nm-applet/eap/fdc58112-40cf-40f0-87b5-135076dc03bd]
+[org/gnome/nm-applet/eap/fdc58112-40cf-40f0-87b5-135076dc03bd]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
-[mutter]
+[org/gnome/nm-applet/eap/fab9bd71-050b-4a1d-921e-5088ead02f34]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/mutter]
 dynamic-workspaces=false
 workspaces-only-on-primary=true
 attach-modal-dialogs=false
 
-[software]
-check-timestamp=int64 1545720258
+[org/gnome/software]
+check-timestamp=int64 1547110308
+
+[org/gtk/settings/file-chooser]
+sort-column='name'
+sidebar-width=182
+window-position=(82, 9)
+show-size-column=true
+show-hidden=false
+window-size=(1203, 694)
+sort-directories-first=true
+date-format='regular'
+sort-order='ascending'
+location-mode='path-bar'
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 0.8600000000000001, 0.0, 0.0, 1.0)
+custom-colors=[(0.8600000000000001, 0.0, 0.0, 1.0)]
+
+[apps/update-manager]
+first-run=false
+launch-time=int64 1546697717
+window-height=400
+show-details=true
+launch-count=2
+window-width=645
+
+[ca/desrt/dconf-editor]
+saved-view='/'
+show-warning=false
+window-height=600
+window-width=800
+window-is-maximized=false

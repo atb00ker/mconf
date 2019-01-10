@@ -1,0 +1,14 @@
+local:
+  hosts:
+    localhost:
+  vars:
+    mconf: Documents/develop/mconf
+    backup_location: files
+    wps_link: http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb
+    wps_font_link: http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb
+    # More Options
+    ansible_connection: local
+    git_email: ajay39in@gmail.com
+    git_name: Ajay Tripathi
+    username: atb00ker
+    become: yes
