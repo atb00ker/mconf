@@ -12,3 +12,4 @@ local:
     git_name: Ajay Tripathi
     username: atb00ker
     become: yes
+    nuke: false

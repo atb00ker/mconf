@@ -1,5 +1,11 @@
 ---
 
+- name: Force remove dconf.txt
+  file:
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dconf.txt"
+    state: absent
+  when: nuke
+
 - name: Get dconf dump
   command: "dconf dump /"
   args:
