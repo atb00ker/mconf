@@ -1,5 +1,5 @@
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1552834279
+release-check-time=uint32 1557699429
 
 [com/ubuntu/sound]
 allow-amplified-volume=false
@@ -79,7 +79,7 @@ default-folder-viewer='icon-view'
 search-filter-time-type='last_modified'
 
 [org/gnome/nautilus/window-state]
-sidebar-width=196
+sidebar-width=278
 geometry='890x530+100+100'
 maximized=true
 
@@ -106,7 +106,7 @@ window-height=480
 window-width=600
 
 [org/gnome/evince/default]
-window-ratio=(2.2919463087248322, 0.8552787663107948)
+window-ratio=(2.2320261437908497, 0.85479797979797978)
 
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
@@ -124,49 +124,66 @@ gtk-theme='Adwaita-dark'
 clock-show-date=true
 
 [org/gnome/desktop/notifications]
-application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps', 'gnome-network-panel', 'code', 'org-gnome-terminal', 'virtualbox', 'ca-desrt-dconf-editor', 'megasync', 'keybase', 'chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-default', 'eog', 'org-gnome-fileroller', 'org-gnome-font-viewer', 'org-gnome-screenshot']
+application-children=['update-manager', 'firefox', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-tweaks', 'gnome-control-center', 'org-gnome-gedit', 'code-url-handler', 'apport-gtk', 'chromium-browser', 'evince', 'google-chrome', 'wps-office-wps', 'gnome-network-panel', 'code', 'org-gnome-terminal', 'virtualbox', 'ca-desrt-dconf-editor', 'megasync', 'keybase', 'chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-default', 'eog', 'org-gnome-fileroller', 'org-gnome-font-viewer', 'org-gnome-screenshot', 'nautilus', 'audacity', 'wps-office-et', 'vlc']
 show-banners=true
 show-in-lock-screen=true
-
-[org/gnome/desktop/notifications/application/org-gnome-terminal]
-application-id='org.gnome.Terminal.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-fileroller]
-application-id='org.gnome.FileRoller.desktop'
-enable=false
-
-[org/gnome/desktop/notifications/application/chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-default]
-application-id='chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-Default.desktop'
 
 [org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
 
-[org/gnome/desktop/notifications/application/google-chrome]
-application-id='google-chrome.desktop'
+[org/gnome/desktop/notifications/application/gnome-control-center]
+application-id='gnome-control-center.desktop'
+
+[org/gnome/desktop/notifications/application/audacity]
+application-id='audacity.desktop'
+
+[org/gnome/desktop/notifications/application/code-url-handler]
+application-id='code-url-handler.desktop'
+
+[org/gnome/desktop/notifications/application/vlc]
+application-id='vlc.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-font-viewer]
 application-id='org.gnome.font-viewer.desktop'
 
-[org/gnome/desktop/notifications/application/gnome-control-center]
-application-id='gnome-control-center.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-screenshot]
+application-id='org.gnome.Screenshot.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-nautilus]
-application-id='org.gnome.Nautilus.desktop'
+[org/gnome/desktop/notifications/application/keybase]
+application-id='keybase.desktop'
+
+[org/gnome/desktop/notifications/application/chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-default]
+application-id='chrome-ofhbbkphhbklhfoeikjpcbhemlocgigb-Default.desktop'
+
+[org/gnome/desktop/notifications/application/wps-office-et]
+application-id='wps-office-et.desktop'
+
+[org/gnome/desktop/notifications/application/apport-gtk]
+application-id='apport-gtk.desktop'
 
 [org/gnome/desktop/notifications/application/megasync]
 application-id='megasync.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-tweaks]
-application-id='org.gnome.tweaks.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-software-editor]
+enable=false
 
-[org/gnome/desktop/notifications/application/evince]
-application-id='evince.desktop'
+[org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
+application-id='ca.desrt.dconf-editor.desktop'
 
-[org/gnome/desktop/notifications/application/virtualbox]
-application-id='virtualbox.desktop'
+[org/gnome/desktop/notifications/application/code]
+application-id='code.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-screenshot]
-application-id='org.gnome.Screenshot.desktop'
+[org/gnome/desktop/notifications/application/nautilus]
+application-id='nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/eog]
+application-id='eog.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
 
 [org/gnome/desktop/notifications/application/update-manager]
 enable-sound-alerts=false
@@ -176,45 +193,40 @@ enable=true
 show-banners=true
 force-expanded=true
 
-[org/gnome/desktop/notifications/application/code-url-handler]
-application-id='code-url-handler.desktop'
+[org/gnome/desktop/notifications/application/nm-applet]
+force-expanded=true
+
+[org/gnome/desktop/notifications/application/wps-office-wps]
+application-id='wps-office-wps.desktop'
+
+[org/gnome/desktop/notifications/application/evince]
+application-id='evince.desktop'
+
+[org/gnome/desktop/notifications/application/virtualbox]
+application-id='virtualbox.desktop'
 
 [org/gnome/desktop/notifications/application/chromium-browser]
 application-id='chromium-browser.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-gedit]
-application-id='org.gnome.gedit.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-tweaks]
+application-id='org.gnome.tweaks.desktop'
 
-[org/gnome/desktop/notifications/application/eog]
-application-id='eog.desktop'
+[org/gnome/desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-software-editor]
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-fileroller]
+application-id='org.gnome.FileRoller.desktop'
 enable=false
 
-[org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
-application-id='ca.desrt.dconf-editor.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-network-panel]
-application-id='gnome-network-panel.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-gedit]
+application-id='org.gnome.gedit.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 enable=false
-
-[org/gnome/desktop/notifications/application/apport-gtk]
-application-id='apport-gtk.desktop'
-
-[org/gnome/desktop/notifications/application/nm-applet]
-force-expanded=true
-
-[org/gnome/desktop/notifications/application/code]
-application-id='code.desktop'
-
-[org/gnome/desktop/notifications/application/keybase]
-application-id='keybase.desktop'
-
-[org/gnome/desktop/notifications/application/wps-office-wps]
-application-id='wps-office-wps.desktop'
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry', 'YaST']
@@ -315,9 +327,10 @@ highlight-colors-set=false
 scroll-on-output=true
 exit-action='close'
 use-theme-colors=false
-use-system-font=false
+font='Monospace 12'
 use-custom-command=false
 use-theme-transparency=false
+use-system-font=false
 use-transparent-background=true
 bold-color-same-as-fg=false
 cursor-blink-mode='on'
@@ -325,6 +338,14 @@ background-color='rgb(0,0,0)'
 background-transparency-percent=5
 highlight-foreground-color='rgb(219,0,0)'
 audible-bell=false
+
+[org/gnome/nm-applet/eap/fab9bd71-050b-4a1d-921e-5088ead02f34]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/nm-applet/eap/fc2c0717-6915-4088-8fe9-496707739012]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
 
 [org/gnome/nm-applet/eap/b51b9d6b-800a-4784-b967-8378d29997ff]
 ignore-phase2-ca-cert=false
@@ -338,15 +359,15 @@ ignore-ca-cert=true
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
+[org/gnome/nm-applet/eap/5d9ab81d-accf-4ee3-bf6a-e3f0adb0ed1d]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
 [org/gnome/nm-applet/eap/87b4366e-5b21-45dc-a938-8207aa1f9272]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
 [org/gnome/nm-applet/eap/c787e5e5-2723-31a8-b14b-e8ecb34cb865]
-ignore-phase2-ca-cert=false
-ignore-ca-cert=false
-
-[org/gnome/nm-applet/eap/fab9bd71-050b-4a1d-921e-5088ead02f34]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
@@ -360,18 +381,18 @@ workspaces-only-on-primary=true
 attach-modal-dialogs=false
 
 [org/gnome/software]
-check-timestamp=int64 1552971293
+check-timestamp=int64 1555483288
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=247
 window-position=(82, 10)
 show-size-column=true
-show-hidden=false
+show-hidden=true
 window-size=(1203, 690)
 sort-directories-first=true
 date-format='regular'
-sort-order='ascending'
+sort-order='descending'
 location-mode='path-bar'
 
 [org/gtk/settings/color-chooser]
@@ -380,10 +401,10 @@ custom-colors=[(0.8600000000000001, 0.0, 0.0, 1.0)]
 
 [apps/update-manager]
 first-run=false
-launch-time=int64 1553005959
-window-height=400
+launch-time=int64 1558254868
+window-height=406
 show-details=true
-launch-count=12
+launch-count=20
 window-width=645
 
 [ca/desrt/dconf-editor]

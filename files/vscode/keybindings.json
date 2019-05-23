@@ -38,4 +38,8 @@
         "command": "editor.action.clipboardCutAction",
         "when": "textInputFocus && !editorReadonly"
     },
+    {
+        "key": "shift+alt+right",
+        "command": "deleteAllRight"
+    },
 ]
