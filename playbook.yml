@@ -1,7 +1,8 @@
 ---
 
 - hosts: local
-  
+  become: yes
+  become_user: root
   pre_tasks:
     - name: Update apt cache
       apt:

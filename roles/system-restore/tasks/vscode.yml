@@ -4,12 +4,17 @@
   include_role:
     name: gantsign.visual-studio-code
     tasks_from: install
+  vars:
+    ansible_become: yes
+    ansible_become_method: sudo
+    ansible_become_user: root
 
 - name: Install extensions
   include_role:
     name: gantsign.visual-studio-code
     tasks_from: install-extensions
   vars:
+    ansible_become: yes
     users:
       - username: "{{ username }}"
         visual_studio_code_extensions: 

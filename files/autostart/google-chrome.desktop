@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=google-chrome
+Hidden=false
+NoDisplay=false
+Name=Google Chrome
+Comment=Start Google Chrome on Startup
+

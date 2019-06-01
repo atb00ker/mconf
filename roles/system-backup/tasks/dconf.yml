@@ -1,10 +1,11 @@
 ---
 
+# Tilix gnome
 - name: Force remove dconf.txt
   file:
     path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dconf.txt"
     state: absent
-  when: nuke
+  when: nuke|bool
 
 - name: Get dconf dump
   command: "dconf dump /"
@@ -26,3 +27,25 @@
   with_items:
     - virtual-root
     - last-save-directory
+
+# Tilix settings
+- name: Force remove tilix.txt
+  file:
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dconf.txt"
+    state: absent
+  when: nuke|bool
+  tags: [tilix]
+
+- name: Get tilix dump
+  command: "dconf dump /com/gexperts/Tilix/"
+  args:
+    creates: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/tilix.txt"
+  register: dump
+  tags: [tilix]
+
+- name: Create tilix.txt
+  copy: 
+    content: "{{ dump.stdout }}"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/tilix.txt"
+  when: dump.changed
+  tags: [tilix]

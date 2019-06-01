@@ -9,7 +9,7 @@
 
 - import_tasks: dconf.yml
   become_user: "{{ username }}"
-  tags: [dconf]
+  tags: [dconf, tilix]
 
 - name: Copy `autostart/`
   become_user: "{{ username }}"

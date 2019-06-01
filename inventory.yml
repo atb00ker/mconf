@@ -13,3 +13,4 @@ local:
     username: atb00ker
     become: yes
     nuke: false
+    ansible_python_interpreter: /usr/bin/python3

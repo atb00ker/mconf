@@ -1,6 +1,8 @@
 ---
 
 - name: Install a .deb package for kingsoft WPS office
+  become: yes
+  become_user: root
   apt:
     deb: "{{ wps_link }}"
   notify:
@@ -8,6 +10,8 @@
     - apt autoclean
 
 - name: Install a .deb package for WPS fonts
+  become: yes
+  become_user: root
   apt:
     deb: "{{ wps_font_link }}"
   notify:
