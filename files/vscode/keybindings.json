@@ -13,7 +13,7 @@
         "command": "workbench.action.closeAllEditors"
     },
     {
-        "key": "ctrl+w",
+        "key": "ctrl+q",
         "command": "workbench.action.closeWindow"
     },
     {
@@ -26,7 +26,7 @@
     },
     {
         "key": "shift+enter",
-        "command": "editor.action.insertLineBefore",
+        "command": "editor.action.insertLineAfter",
         "when": "editorTextFocus"
     },
     {
@@ -39,7 +39,58 @@
         "when": "textInputFocus && !editorReadonly"
     },
     {
-        "key": "shift+alt+right",
-        "command": "deleteAllRight"
+        "key": "alt+right",
+        "command": "cursorEndSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+left",
+        "command": "cursorHomeSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+e",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "meta+g",
+        "command": "cursorBottom",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "meta+q",
+        "command": "workbench.action.focusSideBar"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "-workbench.action.focusSideBar"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.closeWindow",
+        "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeWindow",
+        "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.closeGroup",
+        "when": "activeEditorGroupEmpty && multipleEditorGroups"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeGroup",
+        "when": "activeEditorGroupEmpty && multipleEditorGroups"
     },
 ]
