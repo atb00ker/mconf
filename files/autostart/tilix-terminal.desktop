@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=tilix --full-screen
-Hidden=false
-NoDisplay=false
-Name=Terminal
-Comment=Start Terminal On Startup

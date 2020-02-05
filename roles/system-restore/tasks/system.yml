@@ -1,0 +1,117 @@
+---
+
+- name: Create invar directory
+  become: yes
+  become_user: root
+  file:
+    path: /invar/
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: Setup logind.conf options
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /etc/systemd/logind.conf
+    line: "{{ item }}"
+  loop:
+    - 'LidSwitchIgnoreInhibited=yes'
+    - 'HandlePowerKey=suspend'
+
+- name: Ensure root dotfiles' directories exists
+  become: yes
+  become_user: root
+  file:
+    path:  "{{ item }}"
+    state: directory
+    mode:  0755
+    owner: root
+    group: root
+  loop:
+    - "/etc/default/"
+    - "/etc/X11/"
+    - "/etc/systemd/system/getty@tty1.service.d/"
+
+- name: Ensure user dotfiles' directories exists
+  file:
+    path:  "{{ item }}"
+    state: directory
+    mode:  0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  loop:
+    - "/home/{{ username }}/.config/i3/"
+    - "/home/{{ username }}/.jupyter/nbconfig/"
+
+- name: Copy configuration files
+  become: yes
+  become_user: root
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode:  0644
+  notify:
+    - enable getty@tty1
+    - update grub
+  with_items:
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults",
+        dest: "/home/{{ username }}/.Xdefaults",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bash_profile",
+        dest: "/home/{{ username }}/.bash_profile",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config",
+        dest: "/home/{{ username }}/.config/i3/config",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf",
+        dest: "/home/{{ username }}/.config/i3/compton.conf",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.vimrc",
+        dest: "/home/{{ username }}/.vimrc",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/notebook.json",
+        dest:   "/home/{{ username }}/.jupyter/nbconfig/notebook.json",
+        own:  "{{ username }}"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf",
+        dest: "/etc/systemd/system/getty@tty1.service.d/override.conf",
+        own:  "root"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub",
+        dest: "/etc/default/grub",
+        own:  "root"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.conf",
+        dest: "/etc/X11/xorg.conf",
+        own:  "root"
+      }
+
+- name: Add lock on wake
+  become: yes
+  become_user: root
+  template:
+    src: templates/wakelock.j2
+    dest: /etc/systemd/system/wakelock.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - enable wakelock

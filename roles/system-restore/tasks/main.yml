@@ -1,71 +1,17 @@
 ---
 
-- import_tasks: vscode.yml
-  become_user: "{{ username }}"
-  tags: [vscode, basic]
-
 - import_tasks: common-apt.yml
   become_user: "{{ username }}"
-  tags: [common, basic]
-
-- import_tasks: ubuntu.yml
-  become_user: "{{ username }}"
-  tags: [ubuntu]
-
-- name: Load dconf
-  shell: >
-    bash /home/{{ username }}/{{ mconf }}/roles/system-restore/files/dconf.sh \
-    /home/{{ username }}/{{ mconf }}/{{ backup_location }}/dconf.txt
-  tags: [dconf]
-
-- name: Load tilix
-  shell: >
-    bash /home/{{ username }}/{{ mconf }}/roles/system-restore/files/dconf.sh \
-    /home/{{ username }}/{{ mconf }}/{{ backup_location }}/tilix.txt
-  tags: [tilix]
-
-- import_tasks: wps.yml
-  become_user: "{{ username }}"
-  tags: [wps-office]
+  tags: [basic]
 
 - import_tasks: python.yml
   become_user: "{{ username }}"
   tags: [python, basic]
 
-- name: Create Development Folder
+- import_tasks: vscode.yml
   become_user: "{{ username }}"
-  file:
-    state: directory
-    path: "/home/{{ username }}/Documents/develop"
-    mode: 0755
-    owner: "{{ username }}"
-    group: "{{ username }}"
-  tags: [basic]
+  tags: [vscode, basic]
 
-- name: Restore `autostart/`
+- import_tasks: system.yml
   become_user: "{{ username }}"
-  copy:
-    src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/autostart/"
-    dest: "/home/{{ username }}/.config/autostart/"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
-  tags: [autostart, basic]
-
-- name: Lid Switch Ignore
-  lineinfile:
-    path: /etc/systemd/logind.conf
-    line: 'LidSwitchIgnoreInhibited=yes'
-  tags: [basic]
-
-- name: End note
-  vars:
-    msg: |
-         Remember :-
-          1. GUI settings
-          2. Chrome > settings > Appearance > 'Use system title bar and borders'
-          3. Some settings only take place after restart
-         Complete!
-  debug:
-    msg: "{{ msg.split('\n') }}"
-  tags: [basic]
+  tags: [system, basic]

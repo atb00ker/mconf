@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock the screen on resume from suspend
+
+[Service]
+User={{ username }}
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -i /invar/images/lockscreen-wallpaper.png -c 000000
+
+[Install]
+WantedBy=sleep.target
+WantedBy=suspend.target

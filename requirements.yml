@@ -4,4 +4,3 @@
 
 # Install a role from the Ansible Galaxy
 - src: gantsign.visual-studio-code
-- src: wtanaka.chrome

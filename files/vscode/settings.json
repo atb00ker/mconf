@@ -24,4 +24,7 @@
     "breadcrumbs.enabled": false,
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "git.confirmSync": false,
 }

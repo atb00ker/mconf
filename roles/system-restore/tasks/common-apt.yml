@@ -1,17 +1,14 @@
 ---
 
-- name: Add caffeine repository
+- name: Add non-free to apt sources
   become: yes
   become_user: root
   apt_repository:
-    repo: ppa:caffeine-developers/ppa
-
-- name: Update apt cache
-  become: yes
-  become_user: root
-  apt:
+    repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} non-free"
+    state: present
+    filename: debian-non-free
     update_cache: yes
-    cache_valid_time: 86400
+  when: ansible_distribution == "Debian"
 
 - name: Perform apt full-update
   become: yes
@@ -29,25 +26,85 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - curl 
-    - apt-transport-https 
-    - xclip 
-    - git 
+    - curl
+    - network-manager
+    - x11-xserver-utils
+    - apt-transport-https
+    - xclip
+    - git
     - make
-    - dconf-tools
     - undistract-me
-    - firefox
-    - caffeine
+    - firefox-esr
+    - chromium
     - vlc
   notify:
     - apt autoremove
     - apt autoclean
 
+- name: Install basic i3 requirment packages
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - i3
+    - sudo
+    - alsa-utils
+    - compton
+    - xbacklight
+    - rofi
+    - xterm
+    - nemo
+    - xinit
+    - feh
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: make user sudoer
+  become: yes
+  become_user: root
+  user:
+    name: "{{ username }}"
+    groups: sudo
+    append: yes
+  notify:
+    - reset ssh connection
+
+- name: Install pavilionG6 firmware
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - firmware-realtek
+    - firmware-misc-nonfree
+    - firmware-amd-graphics
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: Download keybase.deb
+  become: yes
+  become_user: root
+  get_url:
+    url: "{{ keybase_url }}"
+    dest: /tmp/keybase.deb
+
+- name: Install keybase
+  become: yes
+  become_user: root
+  apt:
+    deb: /tmp/keybase.deb
+
 - name: Git global configuration
   git_config:
     name: "{{ item.name }}"
     scope: global
-    value: "{{ item.value }}" 
+    value: "{{ item.value }}"
   with_items:
     -  { name: user.email, value: "{{ git_email }}" }
     -  { name: user.name, value: "{{ git_name }}" }
+    -  { name: core.editor, value: "vi" }

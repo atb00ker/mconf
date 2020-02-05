@@ -1,9 +1,26 @@
 ---
 
-  - name: apt autoclean
-    apt:
-      autoclean: yes
+- name: apt autoclean
+  apt:
+    autoclean: yes
 
-  - name: apt autoremove
-    apt:
-      autoremove: yes
+- name: apt autoremove
+  apt:
+    autoremove: yes
+
+- name: enable getty@tty1
+  systemd:
+    name: getty@tty1.service
+    state: started
+    enabled: yes
+
+- name: enable wakelock
+  systemd:
+    name: wakelock.service
+    enabled: yes
+
+- name: update grub
+  shell: update-grub2
+
+- name: reset ssh connection
+  meta: reset_connection

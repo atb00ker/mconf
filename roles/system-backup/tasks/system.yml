@@ -1,0 +1,56 @@
+---
+
+- name: Ensure dotfiles directory exists
+  file:
+    path:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/"
+    state: directory
+    mode:  0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Copy configuration files
+  become: yes
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ username  }}"
+    group: "{{ username  }}"
+    mode:  0644
+
+  with_items:
+    - {
+        src:   "/home/{{ username }}/.Xdefaults",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults"
+      }
+    - {
+        src:   "/home/{{ username }}/.bash_profile",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bash_profile"
+      }
+    - {
+        src:   "/home/{{ username }}/.config/i3/config",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config"
+      }
+    - {
+        src:   "/home/{{ username }}/.config/i3/compton.conf",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf"
+      }
+    - {
+        src:   "/etc/systemd/system/getty@tty1.service.d/override.conf",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf"
+      }
+    - {
+        src:   "/etc/default/grub",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub"
+      }
+    - {
+        src:   "/etc/X11/xorg.conf",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.conf"
+      }
+    - {
+        src:   "/home/{{ username }}/.vimrc",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.vimrc"
+      }
+    - {
+        src:   "/home/{{ username }}/.jupyter/nbconfig/notebook.json",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/notebook.json"
+      }

@@ -2,7 +2,7 @@
 
 - name: Install all common Python packages
   become: yes
-  become_user: root    
+  become_user: root
   apt:
     name: "{{ packages }}"
   vars:
@@ -13,7 +13,6 @@
     - libssl-dev
     - libffi-dev
     - python-dev
-    - python
 
 - name: Update pip & related tools
   pip:

@@ -1,0 +1,16 @@
+{
+  "keys": {
+    "command": {
+      "bind": {
+        "?": "jupyter-notebook:show-keyboard-shortcuts",
+        "shift-r": "jupyter-notebook:restart-kernel-and-run-all-cells",
+        "shift-/": "jupyter-notebook:show-keyboard-shortcuts"
+      },
+      "unbind": [
+        "h",
+        "0,0",
+        "r"
+      ]
+    }
+  }
+}

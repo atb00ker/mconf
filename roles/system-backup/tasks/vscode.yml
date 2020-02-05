@@ -1,13 +1,15 @@
 ---
 
-- name: Ensure backup directory exists
-  file: 
-    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/" 
+- name: Ensure vscode directory exists
+  file:
+    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/"
     state: directory
     mode: 0755
     owner: "{{ username }}"
     group: "{{ username }}"
 
+# I don't want to lose idempotence when the file is mordified,
+# hence, storing in `.cache` for now.
 - name: Copy settings.json to `.cache/`
   copy:
     src: "/home/{{ username }}/.config/Code/User/settings.json"

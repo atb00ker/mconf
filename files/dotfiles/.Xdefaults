@@ -1,0 +1,20 @@
+xterm*selectToClipboard:      true
+xterm*faceName:               Monospace
+xterm*faceSize:               14
+xterm*saveLines:              1000
+xterm*Background:             black
+xterm*Foreground:             white
+xterm*cursorColor:            green
+xterm*pointerShape:           block
+xterm*savelines:              2000
+xterm*visualBell:             false
+xterm*marginBell:             false
+xterm*popOnBell:              false
+xterm*visualBellLine:         true
+xterm*ttyModes:               intr ^X
+xterm*metaSendsEscape:        true
+xterm*locale:                 true
+xterm*utf8:                   1
+*VT100*translations:          #override \n\
+       Ctrl <Key>v:                 insert-selection(CLIPBOARD) \n\
+       Ctrl <Key>c:                 copy-selection(CLIPBOARD)\n

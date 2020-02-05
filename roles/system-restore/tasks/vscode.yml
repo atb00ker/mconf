@@ -6,7 +6,7 @@
     tasks_from: install
   vars:
     ansible_become: yes
-    ansible_become_method: sudo
+    ansible_become_method: su
     ansible_become_user: root
 
 - name: Install extensions
@@ -17,7 +17,7 @@
     ansible_become: yes
     users:
       - username: "{{ username }}"
-        visual_studio_code_extensions: 
+        visual_studio_code_extensions:
           - ms-vscode.atom-keybindings
 
 - name: Copy settings.json

@@ -7,19 +7,9 @@
   become_user: "{{ username }}"
   tags: [vscode]
 
-- import_tasks: dconf.yml
+- import_tasks: system.yml
   become_user: "{{ username }}"
-  tags: [dconf, tilix]
-
-- name: Copy `autostart/`
-  become_user: "{{ username }}"
-  copy:
-    src: "/home/{{ username }}/.config/autostart/"
-    dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/autostart/"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
-  tags: [autostart]
+  tags: [system]
 
 - name: End note
   vars:
