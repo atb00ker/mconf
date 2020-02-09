@@ -51,6 +51,7 @@
     - i3
     - sudo
     - alsa-utils
+    - pulseaudio
     - compton
     - xbacklight
     - rofi
