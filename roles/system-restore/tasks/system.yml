@@ -17,7 +17,7 @@
     path: /etc/systemd/logind.conf
     line: "{{ item }}"
   loop:
-    - 'LidSwitchIgnoreInhibited=yes'
+    - 'HandleLidSwitch=suspend'
     - 'HandlePowerKey=suspend'
 
 - name: Ensure root dotfiles' directories exists
@@ -44,6 +44,22 @@
   loop:
     - "/home/{{ username }}/.config/i3/"
     - "/home/{{ username }}/.jupyter/nbconfig/"
+
+- name: Copy runable Scripts
+  become: yes
+  become_user: root
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode:  0744
+  with_items:
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3-mruws.py",
+        dest: "/home/{{ username }}/.config/i3/i3-mruws.py",
+        own:  "{{ username }}"
+      }
 
 - name: Copy configuration files
   become: yes

@@ -2,7 +2,6 @@
 {
     "files.autoSave": "afterDelay",
     "editor.wordWrap": "on",
-    "search.location": "sidebar",
     "workbench.colorTheme": "Monokai Dimmed",
     "workbench.editor.enablePreview": false,
     "editor.minimap.enabled": false,
@@ -27,4 +26,7 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "git.confirmSync": false,
+    "editor.renderWhitespace": "none",
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 7,
 }

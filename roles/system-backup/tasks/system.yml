@@ -54,3 +54,7 @@
         src:   "/home/{{ username }}/.jupyter/nbconfig/notebook.json",
         dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/notebook.json"
       }
+    - {
+        src:   "/home/{{ username }}/.config/i3/i3-mruws.py",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3-mruws.py"
+      }

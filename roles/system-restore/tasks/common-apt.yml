@@ -37,6 +37,7 @@
     - firefox-esr
     - chromium
     - vlc
+    - tmux
   notify:
     - apt autoremove
     - apt autoclean
@@ -59,6 +60,7 @@
     - nemo
     - xinit
     - feh
+    - flameshot
   notify:
     - apt autoremove
     - apt autoclean
