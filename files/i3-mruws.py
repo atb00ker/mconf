@@ -45,13 +45,25 @@ for space in active_stack:
 dmenu = "echo '{}' | rofi -width 10 -hide-scrollbar -bw 0 -no-fixed-num-lines \
                           -lines 7 -no-custom -sep ' ' -kb-accept-entry '!Alt-Tab' \
                           -kb-row-down Alt-Tab -dmenu".format(
-                            ' '.join([str(element) for element in shuffle_stack]))
+    ' '.join([str(element) for element in shuffle_stack]))
 selected = (os.popen(dmenu).read()).replace('\n', '')
 os.system("i3-msg 'workspace    number {}'".format(selected))
 
 # Save changed stack
-if selected in shuffle_stack: shuffle_stack.remove(selected)
+if selected in shuffle_stack:
+    shuffle_stack.remove(selected)
 save_stack = [selected] + shuffle_stack
 with open('/tmp/i3mru-switch.stack', 'w+') as file:
     file.write(' '.join(str(element) for element in save_stack))
 
+
+'''
+Alternative with the problem that it looks for windows not workspaces:
+rofi -modi window -show window -hide-scrollbar -auto-select \
+             -kb-cancel "Alt+Escape,Escape" \
+             -kb-accept-entry "!Alt-Tab,!Alt+Alt_L,Return"\
+             -kb-row-down "Alt+Tab,Alt+Down" \
+             -kb-row-up "Alt+ISO_Left_Tab,Alt+Up" &
+        xdotool search --sync --class Rofi keyup --delay 0 Tab &
+        xdotool key --delay 0 Tab &
+'''

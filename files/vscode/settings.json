@@ -5,7 +5,6 @@
     "workbench.colorTheme": "Monokai Dimmed",
     "workbench.editor.enablePreview": false,
     "editor.minimap.enabled": false,
-    "atomKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
     "editor.scrollBeyondLastLine": false,
@@ -14,7 +13,7 @@
     "workbench.editor.showIcons": true,
     "editor.formatOnSave": true,
     "explorer.openEditors.visible": 0,
-    "window.menuBarVisibility": "hidden",
+    "window.menuBarVisibility": "toggle",
     "window.newWindowDimensions": "maximized",
     "window.restoreFullscreen": true,
     "zenMode.centerLayout": false,
@@ -29,4 +28,22 @@
     "editor.renderWhitespace": "none",
     "workbench.editor.limit.enabled": true,
     "workbench.editor.limit.value": 7,
+    "python.formatting.provider": "black",
+    "files.autoSaveDelay": 2000,
+    "files.watcherExclude": {
+        "**/node_modules": true,
+        "**/Debug/**": true,
+    },
+    "timeline.excludeSources": [
+        "**/Debug/"
+    ],
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "python.formatting.blackArgs": [
+        "--skip-string-normalization"
+    ],
+    "[python]": {
+        "editor.formatOnPaste": false
+    }
 }
