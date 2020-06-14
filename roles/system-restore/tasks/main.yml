@@ -12,6 +12,11 @@
   become_user: "{{ username }}"
   tags: [vscode, basic]
 
+- import_tasks: spotify.yml
+  become: yes
+  become_user: root
+  tags: [spotify]
+
 - import_tasks: system.yml
   become_user: "{{ username }}"
   tags: [system, basic]

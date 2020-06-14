@@ -1,6 +1,7 @@
 ---
 
 - name: Install vscode
+  ignore_errors: yes
   include_role:
     name: gantsign.visual-studio-code
     tasks_from: install
@@ -9,16 +10,17 @@
     ansible_become_method: su
     ansible_become_user: root
 
-- name: Install extensions
-  include_role:
-    name: gantsign.visual-studio-code
-    tasks_from: install-extensions
-  vars:
-    ansible_become: yes
-    users:
-      - username: "{{ username }}"
-        visual_studio_code_extensions:
-          - ms-vscode.atom-keybindings
+# Atom not used -- Not required
+# - name: Install extensions
+#   include_role:
+#     name: gantsign.visual-studio-code
+#     tasks_from: install-extensions
+#   vars:
+#     ansible_become: yes
+#     users:
+#       - username: "{{ username }}"
+#         visual_studio_code_extensions:
+#           - ms-vscode.atom-keybindings
 
 - name: Copy settings.json
   copy:

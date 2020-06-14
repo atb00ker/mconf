@@ -92,6 +92,7 @@
 - name: Download keybase.deb
   become: yes
   become_user: root
+  ignore_errors: yes
   get_url:
     url: "{{ keybase_url }}"
     dest: /tmp/keybase.deb
@@ -99,6 +100,7 @@
 - name: Install keybase
   become: yes
   become_user: root
+  ignore_errors: yes
   apt:
     deb: /tmp/keybase.deb
 

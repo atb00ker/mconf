@@ -20,6 +20,8 @@
     enabled: yes
 
 - name: update grub
+  become: yes
+  become_user: root
   shell: update-grub2
 
 - name: reset ssh connection
