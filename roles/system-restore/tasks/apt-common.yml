@@ -48,7 +48,7 @@
     - sudo
     - alsa-utils
     - pulseaudio
-    - compton
+    - urxvt
     - xbacklight
     - rofi
     - xterm

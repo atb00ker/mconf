@@ -1,7 +1,7 @@
 xterm*selectToClipboard:      true
 xterm*faceName:               Monospace
 xterm*faceSize:               14
-xterm*saveLines:              1000
+xterm*saveLines:              1500
 xterm*Background:             black
 xterm*Foreground:             white
 xterm*cursorColor:            green
@@ -18,3 +18,28 @@ xterm*utf8:                   1
 *VT100*translations:          #override \n\
        Ctrl <Key>v:                 insert-selection(CLIPBOARD) \n\
        Ctrl <Key>c:                 copy-selection(CLIPBOARD)\n
+
+URxvt*buffered:                   true
+URxvt*cursorBlink:                true
+URxvt*underlineColor:             green
+URxvt*font:                       xft:Monospace:size=14:antialias=true
+URxvt*depth:                      32
+URxvt*borderless:                 true
+URxvt*loginShell:                 false
+Urxvt*secondaryScroll:            true
+URxvt*scrollBar:                  false
+URxvt*saveLines:                  1500
+URxvt*perl-lib:                   /invar/urxvt-perls
+URxvt*termName:                   rxvt-unicode
+URxvt*urlLauncher:                firefox
+URxvt*perl-ext-common:            default,matcher,clipboard,font-size
+URxvt*keysym*Control-KP_Add:      font-size:increase
+URxvt*keysym*Control-KP_Subtract: font-size:decrease
+URxvt*clipboard*autocopy:         true
+URxvt*keysym*C-c:                 perl:clipboard:copy
+URxvt*keysym*C-v:                 perl:clipboard:paste
+URxvt*foreground:                 white
+urxvt*background:                 rgba:0000/0000/0000/cccc
+URxvt*transparent:                true
+URxvt*tintColor:                  white
+URxvt*shading:                    20

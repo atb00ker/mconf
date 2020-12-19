@@ -1,4 +1,3 @@
-// Place Preferences
 {
     "files.autoSave": "afterDelay",
     "editor.wordWrap": "on",
@@ -8,7 +7,6 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
     "editor.scrollBeyondLastLine": false,
-    "workbench.activityBar.visible": false,
     "workbench.editor.showIcons": true,
     "editor.formatOnSave": true,
     "explorer.openEditors.visible": 0,
@@ -18,9 +16,7 @@
     "zenMode.centerLayout": false,
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "breadcrumbs.enabled": false,
     "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 0,
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "git.confirmSync": false,
@@ -28,26 +24,66 @@
     "workbench.editor.limit.enabled": true,
     "workbench.editor.limit.value": 7,
     "python.formatting.provider": "black",
-    "files.autoSaveDelay": 2000,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.decorations.colors": false,
+    "workbench.editor.decorations.badges": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "diffEditor.renderSideBySide": false,
+    "files.autoSaveDelay": 8000,
     "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
         "**/node_modules": true,
-        "**/Debug/**": true,
+        "**/Debug/**": true
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.activityBar.visible": false,
+    "breadcrumbs.enabled": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
     },
     "timeline.excludeSources": [
-        "**/Debug/"
+        "**/Debug/",
+        "git-history"
     ],
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.git": true
+    },
+    "files.associations": {
+        "*.jsx": "javascriptreact"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[python]": {
+        "editor.formatOnPaste": false
+    },
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
     "python.formatting.blackArgs": [
         "--skip-string-normalization"
     ],
-    "[python]": {
-        "editor.formatOnPaste": false
+    "go.alternateTools": {
+        "dlv": "dlv"
     },
-    "workbench.startupEditor": "newUntitledFile",
-    "search.exclude": {
-        "**/.git": true
+    "go.lintTool": "staticcheck",
+    "go.delveConfig": {
+        "dlvLoadConfig": {
+            "followPointers": true,
+            "maxVariableRecurse": 1,
+            "maxStringLen": 64,
+            "maxArrayValues": 64,
+            "maxStructFields": -1
+        },
+        "apiVersion": 2,
+        "showGlobalVariables": false,
+        "debugAdapter": "legacy",
+        "substitutePath": []
     },
-    "workbench.statusBar.visible": false,
+    "go.toolsGopath": "~/.go",
+    "go.buildTags": "all_tests",
+    "go.toolsManagement.autoUpdate": true,
+    "workbench.statusBar.visible": false
 }
