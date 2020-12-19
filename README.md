@@ -9,7 +9,7 @@ Ansible script for creating backup of configuration files of my machine & restor
 ```
 $ lsblk
 $ sudo umount /dev/sdb1
-$ sudo dd bs=4M if=debian-netinst.iso of=/dev/sdb conv=fdatasync  status=progress
+$ sudo dd bs=64k if=debian-netinst.iso of=/dev/sdb conv=fdatasync  status=progress
 ```
 
 ## Installation
@@ -19,24 +19,39 @@ $ sudo dd bs=4M if=debian-netinst.iso of=/dev/sdb conv=fdatasync  status=progres
 
 # Usage
 
-1. Backup : `- role: system-backup`
+## Backup : `role: system-backup`
 
 ```bash
 $ ansible-playbook -i inventory.yml playbook.yml -K
 $ ansible-playbook -i inventory.yml playbook.yml -K --skip-tags "initialize"
 ```
+### Options
 
-2. Restore : `- role: system-restore`
+#### Configurations
+- initialize  : Delete old backups & create folder structure
+
+#### Systems:
+- raspi   : Commands for Raspberry Pi devices
+- netinst : Commands for Normal Debian systems
+
+#### Additional Software
+- vscode      : Backup vscode configurations
+
+## Restore : `role: system-restore`
 
 ```bash
-$ ansible-playbook -i inventory.yml playbook.yml -K
-$ ansible-playbook -i inventory.yml playbook.yml -K --tags "basic"
+$ ansible-playbook -i inventory.yml playbook.yml -K --tags "netinst,python,vscode,spotify"
 ```
 
-## Options
+### Options
 
-- initialize : create folder structure / delete old backups
-- vscode     : vscode configurations
-- system     : system configurations
-- basic      : basic requirements
-- python     : basic Python requirements
+#### Systems:
+- raspi   : Commands for Raspberry Pi devices
+- netinst : Commands for Normal Debian systems
+
+#### Additional Software
+- python      : Python requirements
+- amd-graphics: Systems that have amd graphics card
+- keybase     : Install keybase
+- spotify     : Install Spotify
+- vscode      : Restore vscode configurations

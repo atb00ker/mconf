@@ -1,0 +1,20 @@
+---
+
+- name: Copy configuration files (netinst only)
+  become: yes
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ username  }}"
+    group: "{{ username  }}"
+    mode:  0644
+  with_items:
+    - {
+        src:   "/etc/default/grub",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub"
+      }
+    - {
+        src:   "/etc/X11/xorg.conf",
+        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf"
+      }
+  tags: [netinst]

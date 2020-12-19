@@ -13,6 +13,7 @@
     - libssl-dev
     - libffi-dev
     - python-dev
+  tags: [python]
 
 - name: Update pip & related tools
   pip:
@@ -22,3 +23,4 @@
       - pipenv
       - pip
     state: latest
+  tags: [python]

@@ -9,6 +9,7 @@
     ansible_become: yes
     ansible_become_method: su
     ansible_become_user: root
+  tags: [vscode]
 
 # Atom not used -- Not required
 # - name: Install extensions
@@ -21,6 +22,7 @@
 #       - username: "{{ username }}"
 #         visual_studio_code_extensions:
 #           - ms-vscode.atom-keybindings
+#   tags: [vscode]
 
 - name: Copy settings.json
   copy:
@@ -29,6 +31,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
+  tags: [vscode]
 
 - name: Copy keybindings.json
   copy:
@@ -37,3 +40,4 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
+  tags: [vscode]

@@ -9,7 +9,6 @@
     "editor.formatOnPaste": true,
     "editor.scrollBeyondLastLine": false,
     "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false,
     "workbench.editor.showIcons": true,
     "editor.formatOnSave": true,
     "explorer.openEditors.visible": 0,
@@ -45,5 +44,10 @@
     ],
     "[python]": {
         "editor.formatOnPaste": false
-    }
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "search.exclude": {
+        "**/.git": true
+    },
+    "workbench.statusBar.visible": false,
 }

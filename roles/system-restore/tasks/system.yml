@@ -9,16 +9,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
-
-- name: Setup logind.conf options
-  become: yes
-  become_user: root
-  lineinfile:
-    path: /etc/systemd/logind.conf
-    line: "{{ item }}"
-  loop:
-    - 'HandleLidSwitch=suspend'
-    - 'HandlePowerKey=suspend'
+  tags: [raspi, netinst]
 
 - name: Ensure root dotfiles' directories exists
   become: yes
@@ -33,6 +24,7 @@
     - "/etc/default/"
     - "/etc/X11/"
     - "/etc/systemd/system/getty@tty1.service.d/"
+  tags: [raspi, netinst]
 
 - name: Ensure user dotfiles' directories exists
   file:
@@ -44,6 +36,7 @@
   loop:
     - "/home/{{ username }}/.config/i3/"
     - "/home/{{ username }}/.jupyter/nbconfig/"
+  tags: [raspi, netinst]
 
 - name: Copy runable Scripts
   become: yes
@@ -60,6 +53,7 @@
         dest: "/home/{{ username }}/.config/i3/i3-mruws.py",
         own:  "{{ username }}"
       }
+  tags: [raspi, netinst]
 
 - name: Copy configuration files
   become: yes
@@ -73,7 +67,6 @@
   notify:
     - enable getty@tty1
     - reset ssh connection
-    - update grub
   with_items:
     - {
         src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults",
@@ -110,25 +103,11 @@
         dest: "/etc/systemd/system/getty@tty1.service.d/override.conf",
         own:  "root"
       }
-    - {
-        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub",
-        dest: "/etc/default/grub",
-        own:  "root"
-      }
-    - {
-        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.conf",
-        dest: "/etc/X11/xorg.conf",
-        own:  "root"
-      }
+  tags: [raspi, netinst]
 
-- name: Add lock on wake
-  become: yes
-  become_user: root
-  template:
-    src: templates/wakelock.j2
-    dest: /etc/systemd/system/wakelock.service
-    owner: root
-    group: root
-    mode: '0644'
-  notify:
-    - enable wakelock
+- import_tasks: system-raspi.yml
+  become_user: "{{ username }}"
+
+- import_tasks: system-netinst.yml
+  become_user: "{{ username }}"
+

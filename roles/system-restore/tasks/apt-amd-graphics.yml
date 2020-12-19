@@ -1,0 +1,27 @@
+---
+
+- name: Add non-free to apt sources
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} non-free"
+    state: present
+    filename: debian-non-free
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+  tags: [amd-graphics]
+
+- name: Install pavilionG6 firmware
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - firmware-realtek
+    - firmware-misc-nonfree
+    - firmware-amd-graphics
+  notify:
+    - apt autoremove
+    - apt autoclean
+  tags: [amd-graphics]

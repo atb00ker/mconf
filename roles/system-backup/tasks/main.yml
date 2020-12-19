@@ -1,25 +1,20 @@
 ---
 
 - import_tasks: initialize.yml
-  tags: [initialize]
 
 - import_tasks: vscode.yml
   become_user: "{{ username }}"
-  tags: [vscode]
 
 - import_tasks: system.yml
   become_user: "{{ username }}"
-  tags: [system]
 
 - name: End note
-  vars:
-    msg: |
-         Remember to backup:-
-          1. Documents
-          2. Downloads
-          3. Code(Git)
-         Remember to Check :-
-          1. Potentially sensitive data is removed
-         Complete!
-  debug:
-    msg: "{{ msg.split('\n') }}"
+  pause:
+    prompt: |
+      Remember to backup:-
+        1. Documents
+        2. Downloads
+        3. Code(Git)
+      Remember to Check :-
+        1. Potentially sensitive data is removed
+      Complete!

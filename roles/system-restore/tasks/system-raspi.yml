@@ -1,0 +1,24 @@
+---
+
+- name: Copy configuration files (raspi only)
+  become: yes
+  become_user: root
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode:  0644
+  with_items:
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.raspi.conf",
+        dest: "/etc/X11/xorg.conf",
+        own:  "root"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bashrc.raspi",
+        dest:   "/home/{{ username }}/.bashrc",
+        own:  "{{ username }}"
+      }
+  when: ansible_hostname == "raspi"
+  tags: [raspi]

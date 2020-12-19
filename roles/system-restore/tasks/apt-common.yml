@@ -1,15 +1,5 @@
 ---
 
-- name: Add non-free to apt sources
-  become: yes
-  become_user: root
-  apt_repository:
-    repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} non-free"
-    state: present
-    filename: debian-non-free
-    update_cache: yes
-  when: ansible_distribution == "Debian"
-
 - name: Perform apt full-update
   become: yes
   become_user: root
@@ -18,6 +8,10 @@
   notify:
     - apt autoremove
     - apt autoclean
+  tags: [raspi, netinst]
+
+- import_tasks: apt-amd-graphics.yml
+  become_user: "{{ username }}"
 
 - name: Install all common packages
   become: yes
@@ -26,6 +20,7 @@
     name: "{{ packages }}"
   vars:
     packages:
+    - vim
     - curl
     - network-manager
     - x11-xserver-utils
@@ -37,10 +32,10 @@
     - firefox-esr
     - chromium
     - vlc
-    - tmux
   notify:
     - apt autoremove
     - apt autoclean
+  tags: [raspi, netinst]
 
 - name: Install basic i3 requirment packages
   become: yes
@@ -59,11 +54,16 @@
     - xterm
     - nemo
     - xinit
+    - xfonts-base
+    - xfonts-cyrillic
+    - xfonts-100dpi
+    - xfonts-75dpi
     - feh
     - flameshot
   notify:
     - apt autoremove
     - apt autoclean
+  tags: [raspi, netinst]
 
 - name: make user sudoer
   become: yes
@@ -74,35 +74,7 @@
     append: yes
   notify:
     - reset ssh connection
-
-- name: Install pavilionG6 firmware
-  become: yes
-  become_user: root
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - firmware-realtek
-    - firmware-misc-nonfree
-    - firmware-amd-graphics
-  notify:
-    - apt autoremove
-    - apt autoclean
-
-- name: Download keybase.deb
-  become: yes
-  become_user: root
-  ignore_errors: yes
-  get_url:
-    url: "{{ keybase_url }}"
-    dest: /tmp/keybase.deb
-
-- name: Install keybase
-  become: yes
-  become_user: root
-  ignore_errors: yes
-  apt:
-    deb: /tmp/keybase.deb
+  tags: [raspi, netinst]
 
 - name: Git global configuration
   git_config:
@@ -113,3 +85,4 @@
     -  { name: user.email, value: "{{ git_email }}" }
     -  { name: user.name, value: "{{ git_name }}" }
     -  { name: core.editor, value: "vi" }
+  tags: [raspi, netinst]

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+alias sshc='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias csnippet='curl https://gist.githubusercontent.com/atb00ker/aad7fb8e718f23f01e07798a6c6c2364/raw/ca6fac58e83659c5286246e82d60cca015ccd7d2/snippets-active'
+alias fcode='code .'
+alias please='sudo'
+alias xpwd='pwd | xclip -sel clip'
+alias gui='nemo . &> /dev/null &'
+alias sgui='sudo bash -c "nemo . &> /dev/null &"'
+alias ftime='date +%r'
+alias shutdown='sudo shutdown -P now'
+alias ccat='cat /invar/clipboard'
+
+connect_wifi() {
+    read -p "Enter SSID: " ssid
+    nmcli con up $ssid --ask
+    nmcli connection modify $ssid wifi-sec.psk-flags "1"
+}
+
+# undistract-me
+if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+fi
+
+if ! [ -z "$BASH_VERSION" -o -z "$PS1" -o -n "$last_command_started_cache" ]; then
+    . /usr/share/undistract-me/long-running.bash
+    notify_when_long_running_commands_finish_install
+fi
+
+# Fix issues that are required to be done
+# in every terminal window
+stty intr ^X
+xset b off

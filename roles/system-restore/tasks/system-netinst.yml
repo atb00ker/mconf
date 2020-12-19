@@ -1,0 +1,49 @@
+---
+
+- name: Setup logind.conf options
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /etc/systemd/logind.conf
+    line: "{{ item }}"
+  loop:
+    - 'HandleLidSwitch=suspend'
+    - 'HandlePowerKey=suspend'
+  tags: [netinst]
+
+- name: Add lock on wake
+  become: yes
+  become_user: root
+  template:
+    src: templates/wakelock.j2
+    dest: /etc/systemd/system/wakelock.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - enable wakelock
+  tags: [netinst]
+
+- name: Copy configuration files (netinst only)
+  become: yes
+  become_user: root
+  copy:
+    src:   "{{ item.src  }}"
+    dest:  "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode:  0644
+  notify:
+    - update grub
+  with_items:
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub",
+        dest: "/etc/default/grub",
+        own:  "root"
+      }
+    - {
+        src:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
+        dest: "/etc/X11/xorg.conf",
+        own:  "root"
+      }
+  tags: [netinst]
