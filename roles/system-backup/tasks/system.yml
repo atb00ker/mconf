@@ -1,5 +1,5 @@
 ---
-- name: Copy configuration files
+- name: Copy common configurations
   become: yes
   copy:
     src: "{{ item.src  }}"
@@ -7,6 +7,7 @@
     owner: "{{ username  }}"
     group: "{{ username  }}"
     mode: 0644
+    directory_mode: 0755
   with_items:
     - {
         src: "/home/{{ username }}/.Xdefaults",
@@ -23,6 +24,10 @@
     - {
         src: "/etc/X11/xorg.conf",
         dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
+      }
+    - {
+        src: "/home/{{ username }}/.config/autostart",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/",
       }
 
 # TODO: Improve raspi when condition
@@ -100,6 +105,18 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
+
+- name: Copy sudoers
+  # sudo required for this task,
+  # read : https://superuser.com/questions/1522927/ansible-copy-module-become-permission-denied
+  become: yes
+  become_user: root
+  copy:
+    src: /etc/sudoers.d
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
 
 - name: Remove unwanted invar/ files and directories
   file:

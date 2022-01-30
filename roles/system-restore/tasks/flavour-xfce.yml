@@ -13,3 +13,38 @@
   notify:
     - apt autoremove
     - apt autoclean
+
+- name: Copy xfce .config
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.own }}"
+    group: "{{ item.own }}"
+    mode: "{{ item.mode  }}"
+  with_items:
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/xfce4/accels.scm",
+        dest: "/home/{{ username }}/.config/Thunar/accels.scm",
+        own: "{{ username }}",
+        mode: 0644,
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/xfce4",
+        dest: "/home/{{ username }}/.config/",
+        own: "{{ username }}",
+        mode: "755",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/sudoers.d/opensnitchd",
+        dest: "/etc/sudoers.d/opensnitchd",
+        own: "root",
+        mode: 0440,
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm.conf",
+        dest: "/usr/share/lightdm/lightdm.conf.d/01_debian.conf",
+        own: "root",
+        mode: "755",
+      }

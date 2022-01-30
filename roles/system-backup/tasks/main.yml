@@ -10,9 +10,13 @@
     - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/"
     - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/.cache/"
     - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/"
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3wm/"
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/xfce4/"
     - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/"
     - "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/"
     - "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/.cache/"
+    - "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/xfce4/"
+  tags: [always]
 
 - import_tasks: vscode.yml
   tags: [always]
@@ -23,6 +27,10 @@
 - import_tasks: flavour-i3wm.yml
   when: "'i3wm' in ansible_run_tags"
   tags: [i3wm]
+
+- import_tasks: flavour-xfce.yml
+  when: "'xfce' in ansible_run_tags"
+  tags: [xfce]
 
 - name: End note
   pause:

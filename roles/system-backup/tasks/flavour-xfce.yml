@@ -1,0 +1,27 @@
+---
+- name: Copy xfce .config
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ username  }}"
+    group: "{{ username  }}"
+    mode: 0644
+  with_items:
+    - {
+        src: "/home/{{ username }}/.config/Thunar/accels.scm",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/xfce4/accels.scm",
+      }
+    - {
+        src: "/home/{{ username }}/.config/xfce4",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/",
+      }
+    - {
+        src: "/etc/sudoers.d/opensnitchd",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/sudoers.d/opensnitchd",
+      }
+    - {
+        src: "/usr/share/lightdm/lightdm.conf.d/01_debian.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm.conf",
+      }

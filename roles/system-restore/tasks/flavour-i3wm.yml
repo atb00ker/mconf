@@ -51,22 +51,17 @@
     - reset ssh connection
   with_items:
     - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config",
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3/i3.config",
         dest: "/home/{{ username }}/.config/i3/config",
         own: "{{ username }}",
       }
     - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf",
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3/compton.conf",
         dest: "/home/{{ username }}/.config/i3/compton.conf",
         own: "{{ username }}",
       }
     - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
-        dest: "/etc/X11/xorg.conf",
-        own: "root",
-      }
-    - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf",
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3/getty.override.conf",
         dest: "/etc/systemd/system/getty@tty1.service.d/override.conf",
         own: "root",
       }

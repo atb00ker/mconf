@@ -28,6 +28,7 @@
     owner: "{{ item.own  }}"
     group: "{{ item.own  }}"
     mode: 0644
+    directory_mode: 0755
   with_items:
     - {
         src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults",
@@ -37,6 +38,16 @@
     - {
         src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.vimrc",
         dest: "/home/{{ username }}/.vimrc",
+        own: "{{ username }}",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
+        dest: "/etc/X11/xorg.conf",
+        own: "root",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/autostart",
+        dest: "/home/{{ username }}/.config/",
         own: "{{ username }}",
       }
 
