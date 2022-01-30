@@ -1,5 +1,4 @@
 ---
-
 - name: Perform apt full-update
   become: yes
   become_user: root
@@ -8,10 +7,8 @@
   notify:
     - apt autoremove
     - apt autoclean
-  tags: [raspi, netinst]
 
-- import_tasks: apt-amd-graphics.yml
-  become_user: "{{ username }}"
+- import_tasks: apt-firmware.yml
 
 - name: Install all common packages
   become: yes
@@ -20,50 +17,22 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - vim
-    - curl
-    - network-manager
-    - x11-xserver-utils
-    - apt-transport-https
-    - xclip
-    - git
-    - make
-    - undistract-me
-    - firefox-esr
-    - chromium
-    - vlc
+      - vim
+      - curl
+      - network-manager
+      - x11-xserver-utils
+      - apt-transport-https
+      - xclip
+      - git
+      - make
+      - undistract-me
+      - firefox-esr
+      - bash-completion
+      - chromium
+      - vlc
   notify:
     - apt autoremove
     - apt autoclean
-  tags: [raspi, netinst]
-
-- name: Install basic i3 requirment packages
-  become: yes
-  become_user: root
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - i3
-    - sudo
-    - alsa-utils
-    - pulseaudio
-    - urxvt
-    - xbacklight
-    - rofi
-    - xterm
-    - nemo
-    - xinit
-    - xfonts-base
-    - xfonts-cyrillic
-    - xfonts-100dpi
-    - xfonts-75dpi
-    - feh
-    - flameshot
-  notify:
-    - apt autoremove
-    - apt autoclean
-  tags: [raspi, netinst]
 
 - name: make user sudoer
   become: yes
@@ -74,7 +43,6 @@
     append: yes
   notify:
     - reset ssh connection
-  tags: [raspi, netinst]
 
 - name: Git global configuration
   git_config:
@@ -82,7 +50,6 @@
     scope: global
     value: "{{ item.value }}"
   with_items:
-    -  { name: user.email, value: "{{ git_email }}" }
-    -  { name: user.name, value: "{{ git_name }}" }
-    -  { name: core.editor, value: "vi" }
-  tags: [raspi, netinst]
+    - { name: user.email, value: "{{ git_email }}" }
+    - { name: user.name, value: "{{ git_name }}" }
+    - { name: core.editor, value: "vi" }

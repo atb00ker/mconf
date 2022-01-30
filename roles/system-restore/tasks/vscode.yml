@@ -1,5 +1,4 @@
 ---
-
 - name: Install vscode
   ignore_errors: yes
   include_role:
@@ -9,20 +8,21 @@
     ansible_become: yes
     ansible_become_method: su
     ansible_become_user: root
-  tags: [vscode]
 
-# Atom not used -- Not required
-# - name: Install extensions
-#   include_role:
-#     name: gantsign.visual-studio-code
-#     tasks_from: install-extensions
-#   vars:
-#     ansible_become: yes
-#     users:
-#       - username: "{{ username }}"
-#         visual_studio_code_extensions:
-#           - ms-vscode.atom-keybindings
-#   tags: [vscode]
+- name: Install extensions
+  include_role:
+    name: gantsign.visual-studio-code
+    tasks_from: install-extensions
+  vars:
+    ansible_become: yes
+    ignore_errors: yes
+    users:
+      - username: "{{ username }}"
+        visual_studio_code_extensions:
+          - esbenp.prettier-vscode
+          - ms-python.python
+          - ms-vscode-remote.remote-containers
+          - ms-vscode-remote.remote-ssh
 
 - name: Copy settings.json
   copy:
@@ -31,7 +31,6 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
-  tags: [vscode]
 
 - name: Copy keybindings.json
   copy:
@@ -40,4 +39,3 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
-  tags: [vscode]

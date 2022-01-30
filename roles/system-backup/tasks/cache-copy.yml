@@ -1,0 +1,38 @@
+---
+- block:
+    - name: Copy file to .cache
+      # To maintain idempotence, first copy to .cache
+      # then move it to real location and only execute dependant
+      # tasks when custom_bashrc is changed
+      copy:
+        src: "{{ src_filefolder }}/{{ filename }}"
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/.cache/{{ filename }}"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: 0644
+      register: custom_bashrc
+
+    - name: Copy from .cache to final location
+      copy:
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/.cache/{{ filename }}"
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/{{ filename }}"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: 0644
+      when: custom_bashrc.changed
+
+    - name: Trim before block
+      replace:
+        path: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/{{ filename }}"
+        before: "# BEGIN CUSTOM {{ filename }}"
+        regexp: '.*\s*'
+        replace: ""
+      when: custom_bashrc.changed
+
+    - name: Trim after block
+      replace:
+        path: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/{{ filename }}"
+        after: "# END CUSTOM {{ filename }}"
+        regexp: '.*\s*'
+        replace: ""
+      when: custom_bashrc.changed

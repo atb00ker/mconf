@@ -1,0 +1,45 @@
+---
+- name: Add non-free to apt sources
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} non-free"
+    state: present
+    filename: debian-non-free
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+
+- name: Install common firmware
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - firmware-linux
+      - firmware-realtek
+      - firmware-misc-nonfree
+      - firmware-amd-graphics
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: Install AMD firmware
+  when: '"AuthenticAMD" in ansible_processor'
+  become: yes
+  become_user: root
+  apt:
+    name: amd64-microcode
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: Install Intel firmware
+  when: '"GenuineIntel" in ansible_processor'
+  become: yes
+  become_user: root
+  apt:
+    name: intel-microcode
+  notify:
+    - apt autoremove
+    - apt autoclean

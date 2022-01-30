@@ -2,4 +2,5 @@ venv/
 local/
 .cache/
 unencrypted/
+private_files/
 *.retry

@@ -1,12 +1,28 @@
 ---
-
-- import_tasks: initialize.yml
+- name: Ensure required directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  with_items:
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/"
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/.cache/"
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/"
+    - "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/"
+    - "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/"
+    - "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/.cache/"
 
 - import_tasks: vscode.yml
-  become_user: "{{ username }}"
+  tags: [always]
 
 - import_tasks: system.yml
-  become_user: "{{ username }}"
+  tags: [always]
+
+- import_tasks: flavour-i3wm.yml
+  when: "'i3wm' in ansible_run_tags"
+  tags: [i3wm]
 
 - name: End note
   pause:

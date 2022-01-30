@@ -1,14 +1,4 @@
 ---
-
-- name: Ensure vscode directory exists
-  file:
-    path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/"
-    state: directory
-    mode: 0755
-    owner: "{{ username }}"
-    group: "{{ username }}"
-  tags: [vscode]
-
 # I don't want to lose idempotence when the file is modified,
 # hence, storing in `.cache` for now.
 - name: Copy settings.json to `.cache/`
@@ -19,7 +9,6 @@
     group: "{{ username }}"
     mode: 0644
   register: settings
-  tags: [vscode]
 
 - name: Copy settings.json
   copy:
@@ -29,15 +18,13 @@
     group: "{{ username }}"
     mode: 0644
   when: settings.changed
-  tags: [vscode]
 
 - name: Remove useless lines from settings.json
   lineinfile:
     path: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/vscode/settings.json"
     state: absent
-    regexp: 'python.pythonPath'
+    regexp: "python.pythonPath"
   when: settings.changed
-  tags: [vscode]
 
 - name: Copy keybindings.json
   copy:
@@ -46,4 +33,3 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
-  tags: [vscode]

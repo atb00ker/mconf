@@ -29,7 +29,7 @@ URxvt*loginShell:                 false
 Urxvt*secondaryScroll:            true
 URxvt*scrollBar:                  false
 URxvt*saveLines:                  1500
-URxvt*perl-lib:                   /invar/urxvt-perls
+URxvt*perl-lib:                   /invar/scripts/urxvt-perls
 URxvt*termName:                   rxvt-unicode
 URxvt*urlLauncher:                firefox
 URxvt*perl-ext-common:            default,matcher,clipboard,font-size

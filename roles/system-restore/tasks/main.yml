@@ -1,19 +1,23 @@
 ---
-
 - import_tasks: apt-common.yml
-  become_user: "{{ username }}"
+  tags: [always]
 
 - import_tasks: python.yml
-  become_user: "{{ username }}"
+  tags: [always]
 
 - import_tasks: vscode.yml
-  become_user: "{{ username }}"
-
-- import_tasks: keybase.yml
-  become_user: "{{ username }}"
+  tags: [always]
 
 - import_tasks: spotify.yml
-  become_user: root
+  tags: [always]
 
 - import_tasks: system.yml
-  become_user: "{{ username }}"
+  tags: [always]
+
+- import_tasks: flavour-i3wm.yml
+  when: "'i3wm' in ansible_run_tags"
+  tags: [i3wm]
+
+- import_tasks: flavour-xfce.yml
+  when: "'xfce' in ansible_run_tags"
+  tags: [xfce]

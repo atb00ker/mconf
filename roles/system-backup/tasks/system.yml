@@ -1,59 +1,119 @@
 ---
-
-- name: Ensure dotfiles directory exists
-  file:
-    path:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/"
-    state: directory
-    mode:  0755
-    owner: "{{ username }}"
-    group: "{{ username }}"
-  tags: [netinst, raspi]
-
 - name: Copy configuration files
   become: yes
   copy:
-    src:   "{{ item.src  }}"
-    dest:  "{{ item.dest }}"
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
     owner: "{{ username  }}"
     group: "{{ username  }}"
-    mode:  0644
+    mode: 0644
   with_items:
     - {
-        src:   "/home/{{ username }}/.Xdefaults",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults"
+        src: "/home/{{ username }}/.Xdefaults",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.Xdefaults",
       }
     - {
-        src:   "/home/{{ username }}/.bash_profile",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bash_profile"
+        src: "/home/{{ username }}/.vimrc",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.vimrc",
       }
     - {
-        src:   "/home/{{ username }}/.config/i3/config",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config"
+        src: "/etc/default/grub",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub",
       }
     - {
-        src:   "/home/{{ username }}/.config/i3/compton.conf",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf"
+        src: "/etc/X11/xorg.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
       }
-    - {
-        src:   "/etc/systemd/system/getty@tty1.service.d/override.conf",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf"
-      }
-    - {
-        src:   "/home/{{ username }}/.vimrc",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.vimrc"
-      }
-    - {
-        src:   "/home/{{ username }}/.jupyter/nbconfig/notebook.json",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/notebook.json"
-      }
-    - {
-        src:   "/home/{{ username }}/.config/i3/i3-mruws.py",
-        dest:  "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/i3-mruws.py"
-      }
-  tags: [netinst, raspi]
 
-- import_tasks: system-raspi.yml
-  become_user: "{{ username }}"
+# TODO: Improve raspi when condition
+- name: Copy configuration files (raspi only)
+  become: yes
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ username  }}"
+    group: "{{ username  }}"
+    mode: 0644
+  with_items:
+    - {
+        src: "/etc/X11/xorg.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.raspi.conf",
+      }
+    - {
+        src: "/home/{{ username }}/.bashrc",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bashrc.raspi",
+      }
+  when: ansible_hostname == "raspi"
 
-- import_tasks: system-netinst.yml
-  become_user: "{{ username }}"
+- include_tasks: cache-copy.yml
+  vars:
+    src_filefolder: "/home/{{ username }}"
+    filename: "{{ item }}"
+  with_items:
+    - ".bashrc"
+    - ".bash_profile"
+
+- include_tasks: cache-copy.yml
+  vars:
+    src_filefolder: "/etc"
+    filename: "{{ item }}"
+  with_items:
+    - "hosts"
+
+# Others
+- name: Copy SSH
+  copy:
+    src: "/home/{{ username }}/.ssh/"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/ssh/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy GPG
+  copy:
+    src: "/home/{{ username }}/.gnupg/"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/gnupg/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy Network
+  # sudo required for this task,
+  # read : https://superuser.com/questions/1522927/ansible-copy-module-become-permission-denied
+  become: yes
+  become_user: root
+  copy:
+    src: /etc/NetworkManager/system-connections
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Copy Bluetooth
+  # sudo required for this task,
+  # read : https://superuser.com/questions/1522927/ansible-copy-module-become-permission-denied
+  become: yes
+  become_user: root
+  copy:
+    src: "/var/lib/bluetooth/"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/bluetooth/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Remove unwanted invar/ files and directories
+  file:
+    path: "/invar/{{ item }}"
+    state: absent
+  loop:
+    - lost+found
+    - .Trash-1000
+
+- name: Copy /invar/
+  copy:
+    src: "/invar/"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/invar/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    directory_mode: 0755

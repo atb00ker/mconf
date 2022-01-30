@@ -50,6 +50,8 @@
         "**/node_modules": true,
         "**/.git": true
     },
+    // Extensions & Language Support
+    "redhat.telemetry.enabled": false,
     "files.associations": {
         "*.jsx": "javascriptreact"
     },
@@ -58,9 +60,6 @@
     },
     "[python]": {
         "editor.formatOnPaste": false
-    },
-    "[csharp]": {
-        "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
     "python.formatting.blackArgs": [
         "--skip-string-normalization"
@@ -85,5 +84,8 @@
     "go.toolsGopath": "~/.go",
     "go.buildTags": "all_tests",
     "go.toolsManagement.autoUpdate": true,
-    "workbench.statusBar.visible": false
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.statusBar.visible": false,
 }

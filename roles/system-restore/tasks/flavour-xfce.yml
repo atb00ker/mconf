@@ -1,0 +1,15 @@
+---
+- name: Install basic xfce requirment packages
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - xfce4
+      - xfce4-goodies
+      - nemo
+      - flameshot
+  notify:
+    - apt autoremove
+    - apt autoclean

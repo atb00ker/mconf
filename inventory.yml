@@ -4,6 +4,7 @@ local:
   vars:
     mconf: Documents/develop/mconf
     backup_location: files
+    private_backup_location: private_files
     # More Options
     git_email: ajay39in@gmail.com
     git_name: Ajay Tripathi

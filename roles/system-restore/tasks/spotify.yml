@@ -1,21 +1,18 @@
 ---
-
 - name: Add spotify signing key
   become: yes
   become_user: root
   ignore_errors: yes
   apt_key:
-    url: https://download.spotify.com/debian/pubkey.gpg
+    url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
     state: present
-  tags: [spotify]
 
 - name: Add repository
   become: yes
   become_user: root
   ignore_errors: yes
   apt_repository:
-    repo: 'deb http://repository.spotify.com stable non-free'
-  tags: [spotify]
+    repo: "deb http://repository.spotify.com stable non-free"
 
 - name: Install spotify
   become: yes
@@ -25,4 +22,3 @@
     name: spotify-client
     update_cache: yes
     state: latest
-  tags: [spotify]

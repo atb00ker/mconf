@@ -1,0 +1,84 @@
+---
+- name: Install basic i3wm requirment packages
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - i3
+      - i3lock
+      - alsa-utils
+      - pulseaudio
+      - urxvt
+      - xbacklight
+      - rofi
+      - xterm
+      - nemo
+      - xinit
+      - xfonts-base
+      - xfonts-cyrillic
+      - xfonts-100dpi
+      - xfonts-75dpi
+      - feh
+      - flameshot
+  notify:
+    - apt autoremove
+    - apt autoclean
+
+- name: Ensure user dotfiles' directories exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  loop:
+    - "/home/{{ username }}/.config/i3/"
+    - "/etc/systemd/system/getty@tty1.service.d/"
+
+- name: Copy dotfiles
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode: 0644
+  notify:
+    - enable getty@tty1
+    - reset ssh connection
+  with_items:
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config",
+        dest: "/home/{{ username }}/.config/i3/config",
+        own: "{{ username }}",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf",
+        dest: "/home/{{ username }}/.config/i3/compton.conf",
+        own: "{{ username }}",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
+        dest: "/etc/X11/xorg.conf",
+        own: "root",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf",
+        dest: "/etc/systemd/system/getty@tty1.service.d/override.conf",
+        own: "root",
+      }
+
+- name: Add lock on wake
+  become: yes
+  become_user: root
+  template:
+    src: templates/wakelock.j2
+    dest: /etc/systemd/system/wakelock.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - enable wakelock

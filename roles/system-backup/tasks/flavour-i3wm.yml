@@ -1,0 +1,22 @@
+---
+- name: Copy i3wm configurations
+  become: yes
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ username  }}"
+    group: "{{ username  }}"
+    mode: 0644
+  with_items:
+    - {
+        src: "/home/{{ username }}/.config/i3/config",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/i3.config",
+      }
+    - {
+        src: "/home/{{ username }}/.config/i3/compton.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/compton.conf",
+      }
+    - {
+        src: "/etc/systemd/system/getty@tty1.service.d/override.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/getty.override.conf",
+      }

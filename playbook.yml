@@ -1,7 +1,7 @@
 ---
-
 - hosts: local
   become: yes
+  gather_facts: true
   become_user: root
   pre_tasks:
     - name: Update apt cache
@@ -9,4 +9,4 @@
         update_cache: yes
         cache_valid_time: 86400
   roles:
-    - role: system-backup
+    - role: system-restore
