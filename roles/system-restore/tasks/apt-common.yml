@@ -25,6 +25,8 @@
       - xclip
       - git
       - make
+      - seahorse
+      - keepassxc
       - undistract-me
       - firefox-esr
       - bash-completion

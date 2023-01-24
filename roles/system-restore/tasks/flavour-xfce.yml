@@ -17,6 +17,7 @@
 - name: Copy xfce .config
   become: yes
   become_user: root
+  ignore_errors: yes
   copy:
     src: "{{ item.src  }}"
     dest: "{{ item.dest }}"
@@ -40,7 +41,7 @@
         src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/sudoers.d/opensnitchd",
         dest: "/etc/sudoers.d/opensnitchd",
         own: "root",
-        mode: 0440,
+        mode: "440",
       }
     - {
         src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm.conf",

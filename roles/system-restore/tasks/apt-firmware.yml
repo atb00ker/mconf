@@ -1,4 +1,14 @@
 ---
+- name: Add contrib to apt sources
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian/ {{ ansible_distribution_release }} contrib"
+    state: present
+    filename: debian-contrib
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+
 - name: Add non-free to apt sources
   become: yes
   become_user: root

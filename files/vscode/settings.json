@@ -1,7 +1,7 @@
 {
     "files.autoSave": "afterDelay",
     "editor.wordWrap": "on",
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Default Dark+",
     "workbench.editor.enablePreview": false,
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
@@ -37,15 +37,10 @@
         "**/Debug/**": true
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "workbench.activityBar.visible": false,
     "breadcrumbs.enabled": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "timeline.excludeSources": [
-        "**/Debug/",
-        "git-history"
-    ],
     "search.exclude": {
         "**/node_modules": true,
         "**/.git": true
@@ -85,6 +80,28 @@
     "go.buildTags": "all_tests",
     "go.toolsManagement.autoUpdate": true,
     "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
+    "workbench.activityBar.visible": false,
+    "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "workbench.statusBar.visible": false,

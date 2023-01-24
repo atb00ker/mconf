@@ -58,6 +58,14 @@
     - ".bashrc"
     - ".bash_profile"
 
+- name: Copy Keyrings
+  copy:
+    src: "/home/{{ username }}/.local/share/keyrings/"
+    dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/keyrings/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
 - include_tasks: cache-copy.yml
   vars:
     src_filefolder: "/etc"

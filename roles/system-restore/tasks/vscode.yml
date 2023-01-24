@@ -23,6 +23,7 @@
           - ms-python.python
           - ms-vscode-remote.remote-containers
           - ms-vscode-remote.remote-ssh
+          # - pranaygp.vscode-css-peek
 
 - name: Copy settings.json
   copy:

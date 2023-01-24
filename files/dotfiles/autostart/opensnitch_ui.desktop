@@ -14,3 +14,5 @@ Categories=System;Security;Monitor;Network;
 Keywords=system;firewall;policies;security;polkit;policykit;
 X-GNOME-Autostart-Delay=3
 X-GNOME-Autostart-enabled=true
+Hidden=false
+RunHook=0

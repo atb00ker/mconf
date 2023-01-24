@@ -103,16 +103,19 @@
   when: ansible_hostname == "raspi"
 
 - name: Add custom content
+  ignore_errors: yes
   blockinfile:
     path: "{{ item.path }}/{{ item.file }}"
     block: "{{ lookup('file', '/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/{{ item.file }}') }}"
     state: present
+    create: true
   with_items:
     - { path: "/home/{{ username }}", file: ".bashrc" }
     - { path: "/home/{{ username }}", file: ".bash_profile" }
     - { path: "/etc", file: "hosts" }
 
 - name: Copy SSH
+  ignore_errors: yes
   copy:
     src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/ssh/"
     dest: "/home/{{ username }}/.ssh/"
@@ -122,6 +125,7 @@
     mode: 0600
 
 - name: Copy GPG
+  ignore_errors: yes
   copy:
     src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/gnupg/"
     dest: "/home/{{ username }}/.gnupg/"
@@ -130,7 +134,18 @@
     directory_mode: 0700
     mode: 0600
 
+- name: Copy keyrings
+  ignore_errors: yes
+  copy:
+    src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/keyrings/"
+    dest: "/home/{{ username }}/.local/share/keyrings/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    directory_mode: 0700
+    mode: 0600
+
 - name: Copy Network
+  ignore_errors: yes
   # sudo required for this task,
   # read : https://superuser.com/questions/1522927/ansible-copy-module-become-permission-denied
   copy:
@@ -141,6 +156,7 @@
     mode: 0600
 
 - name: Copy Bluetooth
+  ignore_errors: yes
   # sudo required for this task,
   # read : https://superuser.com/questions/1522927/ansible-copy-module-become-permission-denied
   copy:
@@ -151,6 +167,7 @@
     mode: 0600
 
 - name: Copy /invar/
+  ignore_errors: yes
   copy:
     src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/invar/"
     dest: "/invar/"

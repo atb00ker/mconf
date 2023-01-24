@@ -6,7 +6,7 @@
         "command": "workbench.action.toggleStatusbarVisibility"
     },
     {
-        "key": "ctrl+shift+b",
+        "key": "ctrl+shift+r",
         "command": "workbench.view.debug",
         "when": "viewContainer.workbench.view.debug.enabled"
     },
