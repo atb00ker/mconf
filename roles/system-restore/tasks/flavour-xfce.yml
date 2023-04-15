@@ -14,7 +14,7 @@
     - apt autoremove
     - apt autoclean
 
-- name: Copy xfce .config
+- name: Copy xfce config
   become: yes
   become_user: root
   ignore_errors: yes
@@ -46,6 +46,17 @@
     - {
         src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm.conf",
         dest: "/usr/share/lightdm/lightdm.conf.d/01_debian.conf",
+        own: "root",
+        mode: "755",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm-gtk-greeter.conf",
+        dest: "/etc/lightdm/lightdm-gtk-greeter.conf",
+        own: "root",
+      }
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/xbacklight",
+        dest: "/usr/bin/xbacklight",
         own: "root",
         mode: "755",
       }

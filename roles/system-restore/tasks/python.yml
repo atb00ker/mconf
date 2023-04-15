@@ -14,13 +14,4 @@
       - build-essential
       - libssl-dev
       - libffi-dev
-      - python-dev
-
-- name: Update pip & related tools
-  pip:
-    name:
-      - setuptools
-      - pipenv
-      - pip
-      - pynput
-    state: latest
+      - python-is-python3

@@ -25,3 +25,11 @@
         src: "/usr/share/lightdm/lightdm.conf.d/01_debian.conf",
         dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm.conf",
       }
+    - {
+        src: "/etc/lightdm/lightdm-gtk-greeter.conf",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/lightdm-gtk-greeter.conf",
+      }
+    - {
+        src: "/usr/bin/xbacklight",
+        dest: "/home/{{ username }}/{{ mconf }}/{{ private_backup_location }}/xbacklight",
+      }

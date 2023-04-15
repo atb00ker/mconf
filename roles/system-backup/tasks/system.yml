@@ -30,7 +30,6 @@
         dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/",
       }
 
-# TODO: Improve raspi when condition
 - name: Copy configuration files (raspi only)
   become: yes
   copy:

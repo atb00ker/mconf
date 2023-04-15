@@ -21,3 +21,13 @@
 - import_tasks: flavour-xfce.yml
   when: "'xfce' in ansible_run_tags"
   tags: [xfce]
+
+- name: End note
+  pause:
+    prompt: |
+      Remember to Install:-
+        1. Opensnitch
+        2. Signal
+      Remember to Configure:-
+        1. To retry fingerprint after first failure, see:  /etc/pam.d/common-auth
+      Complete!

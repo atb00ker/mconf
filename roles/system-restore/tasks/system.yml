@@ -58,10 +58,12 @@
     path: /etc/systemd/logind.conf
     line: "{{ item }}"
   loop:
-    - "HandleLidSwitch=suspend"
     - "HandlePowerKey=suspend"
+    - "HandleLidSwitch=suspend"
+    - "HandleLidSwitchExternalPower=suspend"
+    - "HandleLidSwitchDocked=suspend"
+    - "LidSwitchIgnoreInhibited=yes"
 
-# TODO: Add condition for checking if it's not raspi
 - name: Copy configuration files
   become: yes
   become_user: root
@@ -71,6 +73,7 @@
     owner: "{{ item.own  }}"
     group: "{{ item.own  }}"
     mode: 0644
+  when: ansible_hostname == "atb00ker"
   notify:
     - update grub
   with_items:
@@ -175,3 +178,10 @@
     group: "{{ username }}"
     mode: 0644
     directory_mode: 0755
+
+- name: Link opensnitch configurations
+  # sudo ln -s /invar/firewall/opensnitch/rules/ /etc/opensnitchd/rules
+  file:
+    src: "/invar/firewall/opensnitch/rules/"
+    dest: "/etc/opensnitchd/rules"
+    state: link
