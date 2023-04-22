@@ -9,6 +9,7 @@
   loop:
     - "/etc/default/"
     - "/etc/X11/"
+    - "/etc/opensnitchd/"
 
 - name: Ensure expected user directories exists
   file:
@@ -41,11 +42,6 @@
         own: "{{ username }}",
       }
     - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
-        dest: "/etc/X11/xorg.conf",
-        own: "root",
-      }
-    - {
         src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/autostart",
         dest: "/home/{{ username }}/.config/",
         own: "{{ username }}",
@@ -73,7 +69,6 @@
     owner: "{{ item.own  }}"
     group: "{{ item.own  }}"
     mode: 0644
-  when: ansible_hostname == "atb00ker"
   notify:
     - update grub
   with_items:
@@ -82,28 +77,6 @@
         dest: "/etc/default/grub",
         own: "root",
       }
-
-- name: Copy configuration files (raspi only)
-  become: yes
-  become_user: root
-  copy:
-    src: "{{ item.src  }}"
-    dest: "{{ item.dest }}"
-    owner: "{{ item.own  }}"
-    group: "{{ item.own  }}"
-    mode: 0644
-  with_items:
-    - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.raspi.conf",
-        dest: "/etc/X11/xorg.conf",
-        own: "root",
-      }
-    - {
-        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bashrc.raspi",
-        dest: "/home/{{ username }}/.bashrc",
-        own: "{{ username }}",
-      }
-  when: ansible_hostname == "raspi"
 
 - name: Add custom content
   ignore_errors: yes
@@ -180,6 +153,7 @@
     directory_mode: 0755
 
 - name: Link opensnitch configurations
+  ignore_errors: yes
   # sudo ln -s /invar/firewall/opensnitch/rules/ /etc/opensnitchd/rules
   file:
     src: "/invar/firewall/opensnitch/rules/"

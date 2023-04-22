@@ -1,0 +1,23 @@
+- name: Copy configuration files
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ item.src  }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.own  }}"
+    group: "{{ item.own  }}"
+    mode: 0644
+  with_items:
+    - {
+        src: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bashrc.raspi",
+        dest: "/home/{{ username }}/.bashrc",
+        own: "{{ username }}",
+      }
+
+- name: Make sure startx does not start for raspi
+  become: yes
+  become_user: root
+  lineinfile:
+    path: "/home/{{ username }}/.bash_profile"
+    state: absent
+    regexp: ".*exec startx.*"

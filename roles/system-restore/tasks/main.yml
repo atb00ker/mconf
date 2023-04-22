@@ -22,6 +22,10 @@
   when: "'xfce' in ansible_run_tags"
   tags: [xfce]
 
+- import_tasks: raspi.yml
+  when: "'raspi' in ansible_run_tags"
+  tags: [raspi]
+
 - name: End note
   pause:
     prompt: |

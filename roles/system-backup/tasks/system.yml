@@ -22,32 +22,9 @@
         dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/grub",
       }
     - {
-        src: "/etc/X11/xorg.conf",
-        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.netinst.conf",
-      }
-    - {
         src: "/home/{{ username }}/.config/autostart",
         dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/",
       }
-
-- name: Copy configuration files (raspi only)
-  become: yes
-  copy:
-    src: "{{ item.src  }}"
-    dest: "{{ item.dest }}"
-    owner: "{{ username  }}"
-    group: "{{ username  }}"
-    mode: 0644
-  with_items:
-    - {
-        src: "/etc/X11/xorg.conf",
-        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/xorg.raspi.conf",
-      }
-    - {
-        src: "/home/{{ username }}/.bashrc",
-        dest: "/home/{{ username }}/{{ mconf }}/{{ backup_location }}/dotfiles/.bashrc.raspi",
-      }
-  when: ansible_hostname == "raspi"
 
 - include_tasks: cache-copy.yml
   vars:
